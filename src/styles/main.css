@@ -12,6 +12,7 @@ header{
     position: static;
    
 }
+
 .asideLeft{
     display: flex;
     flex-direction: column;
@@ -22,9 +23,11 @@ header{
     flex-direction: column;
     border-left: 2px solid red;
     border-right: 2px solid red;
-    height: 90vh;
+    height: 100vh;
     overflow: scroll;
     overflow-x: hidden;
+    background-color: cornsilk;
+
 }
 
 .asideRight{
