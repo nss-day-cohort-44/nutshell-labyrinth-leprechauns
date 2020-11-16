@@ -22,8 +22,8 @@ eventHub.addEventListener("click", e => {
             //userId: sessionStorage.getItem("activeUser")
             userId: 1
         }
-        eventHub.dispatchEvent("addEventEvent", {
+        eventHub.dispatchEvent(new CustomEvent("addEventEvent", {
             detail
-        });
+        }));
     }
 })

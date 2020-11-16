@@ -16,6 +16,11 @@ export const getEventsArrayByUser = user => {
         return useEvents().filter(ev => user.id === ev.userId);
 }
 
+const dispatchStateChange = () => {
+    eventHub.dispatchEvent(new CustomEvent("eventListStateChanged"))
+}
+
 eventHub.addEventListener("addEventEvent", e => {
 
+    console.log("test", e)
 })
