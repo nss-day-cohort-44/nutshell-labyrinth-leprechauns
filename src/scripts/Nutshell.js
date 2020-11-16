@@ -1,3 +1,5 @@
+import { ChatList } from "./chat/ChatList.js"
+
 const mainBody = document.querySelector(".mainBody")
 
 export const Nutshell = () => {
@@ -88,8 +90,7 @@ Being displayed)>btn Remove</div>
       <h2>---FRIENDS LIST---</h2>
       What about second breakfast? Sticky am fear dogs wondering slow surprisingly 24th outrunning incident ears EIf-witch. Overreacting several hell Sit slaughtered.</div>
   <div class="asideRight__chat">
-      <h2>---CHAT---</h2>
-      What about second breakfast? Sticky am fear dogs wondering slow surprisingly 24th outrunning incident ears EIf-witch. Overreacting several hell Sit slaughtered. </div>
   
 </aside>`
+  ChatList()
 }
