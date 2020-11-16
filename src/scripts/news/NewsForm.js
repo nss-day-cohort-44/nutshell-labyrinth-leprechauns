@@ -8,6 +8,7 @@ export const newsClickEventHeard = () =>{
         // console.log("Post Article click heard")
         contentTarget.innerHTML = `
         <h6>Title Of Article</h6>
+        <input type="hidden" name="articleId" id="articleId">
         <input type="text" id="titleOfArticle" name="titleOfArticle">
         <h6>Synopsis of Article</h6>
         <input type="text" id="aboutArticle" name="aboutArticle">
@@ -20,12 +21,14 @@ export const newsClickEventHeard = () =>{
 }
 
 eventHub.addEventListener("click", clickEvent =>{
-    if(clickEvent.target.id === "saveNewsArticle" && document.querySelector("#titleOfArticle").value !== "" && document.querySelector("#aboutArticle") !== "" && document.querySelector("#articleUrl") !== ""){
+    const id = document.querySelector("#articleId")
+    if(clickEvent.target.id === "saveNewsArticle" && id.value === ""){
         const timeOfArticlePost = Date.now()
         const titleOfArticle = document.querySelector("#titleOfArticle").value
         const synopsisOfArticle = document.querySelector("#aboutArticle").value
         const urlOfArticle = document.querySelector("#articleUrl").value
         const userId = +sessionStorage.getItem("activeUser")
+        
         const newArticlePost = {
             titleOfArticle,
             synopsisOfArticle,
@@ -34,7 +37,22 @@ eventHub.addEventListener("click", clickEvent =>{
             userId
         }
         saveNews(newArticlePost)
-    }else if (clickEvent.target.id === "saveNewsArticle" && !document.querySelector("#titleOfArticle").value || !document.querySelector("#aboutArticle") || !document.querySelector("#articleUrl")){
-        window.alert("Please fill out the entire form")
     }
+    // else if(clickEvent.target.id === "saveNewsArticle" && document.querySelector("#titleOfArticle").value !== "" && document.querySelector("#aboutArticle") !== "" && document.querySelector("#articleUrl")){
+    //     const timeOfArticlePost = Date.now()
+    //     const titleOfArticle = document.querySelector("#titleOfArticle").value
+    //     const synopsisOfArticle = document.querySelector("#aboutArticle").value
+    //     const urlOfArticle = document.querySelector("#articleUrl").value
+    //     const userId = +sessionStorage.getItem("activeUser")
+    //     const id = document.querySelector("#articleId").value
+    //     const newArticlePost = {
+    //         titleOfArticle,
+    //         synopsisOfArticle,
+    //         urlOfArticle,
+    //         timeOfArticlePost,
+    //         userId
+    //     }
+    //     editNews(newArticlePost, id)
+    // }
 })
+

@@ -1,7 +1,7 @@
 let news = []
 
 export const getNews= () =>{
-    return fetch("http://localhost:8088/articles?_expand=users")
+    return fetch("http://localhost:8088/articles?_expand=user")
     .then(response => response.json())
     .then(
         parsedNews =>{
@@ -31,8 +31,9 @@ export const saveNews = news => {
 }
 
 export const deleteNews = newsId => {
+    
     return fetch(`http://localhost:8088/articles/${newsId}`, {
-        method: "DELETE",
+        method: "DELETE"
     })
         .then(getNews)
 }
@@ -41,6 +42,6 @@ const eventHub = document.querySelector(".container")
 
 const dispatchStateChangeEvent = () =>{
     const newsStateChangedEvent = new CustomEvent("newsStateChanged")
-        
+
     eventHub.dispatchEvent(newsStateChangedEvent)
 }
