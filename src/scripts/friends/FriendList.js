@@ -12,7 +12,7 @@ export const FriendList = () => {
     // userId = sessionStorage.getItem(`activeUser`)
     userId = 1;
     // Get an array of all this user's friends (see FriendProvider module), then get an array of
-    // user objects from the friends (see UserProvider module).
+    // user objects from the friends array (see UserProvider module).
     const friendArr = getFriendArrayByUser(userId).map(fr => getUserByUserId(fr.followingId));
     let htmlRep = "<h3>Friends List</h3>";
     htmlRep += AddFriendButton();
@@ -43,6 +43,7 @@ eventHub.addEventListener("click", e => {
     }
 })
 
+// If the friend list changes for any reason (add, delete, edit) then update the friends list and redraw.
 eventHub.addEventListener("friendListStateChanged", e => {
     getFriends()
         .then(FriendList);

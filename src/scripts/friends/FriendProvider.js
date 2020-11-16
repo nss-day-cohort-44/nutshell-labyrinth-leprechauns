@@ -19,7 +19,7 @@ const dispatchStateChange = () => {
 
 // Returns an array of all friends of a particular user. Requires either a user id or a user object.
 export const getFriendArrayByUser = user => {
-    // This checks whether we were given an id or an object, and ajusts the filter() call respectively.
+    // This checks whether we were given an id or an object, and adjusts the filter() call respectively.
     if (typeof (user) === "number")
         return useFriends().filter(fr => fr.userId === user)
     else if (typeof (user) === "object")
@@ -54,7 +54,7 @@ export const addFriend = (user, friend) => {
     }
 }
 
-// Retrives the friend to be deleted use helper method, initiates a DELETE call to fetch().
+// Retrieves the friend to be deleted via helper method, initiates a DELETE call to fetch().
 // Requires ids of both the active user and the friend user. When this method is called,
 // it should be immediately followed by a call to dispatchStateChange().
 export const deleteFriend = (user, friend) => {
