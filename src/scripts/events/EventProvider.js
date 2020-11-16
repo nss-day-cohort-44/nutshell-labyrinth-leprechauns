@@ -1,3 +1,5 @@
+import { RenderCreateArea } from "../home/HomePage.js";
+
 let events = [];
 const eventHub = document.querySelector(".container");
 
@@ -7,6 +9,27 @@ export const getEvents = () => {
     return fetch(`http://localhost:8088/events`)
     .then(response => response.json())
     .then(response => events = response);
+}
+
+const addEvent = (name, location, eventDate, userId) => {
+    return fetch(`http://localhost:8088/events`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name,
+            location,
+            eventDate,
+            userId
+        })
+    })
+}
+
+const deleteEvent = eventId => {
+    return fetch(`http://localhost:8088/events/${eventId}`, {
+        method: "DELETE"
+    })
 }
 
 export const getEventsArrayByUser = user => {
@@ -21,6 +44,16 @@ const dispatchStateChange = () => {
 }
 
 eventHub.addEventListener("addEventEvent", e => {
+    addEvent(e.detail.eventName, e.detail.eventLocation, e.detail.eventDate, e.detail.userId)
+    .then(() => {
+        dispatchStateChange();
+        RenderCreateArea();  
+    })
+})
 
-    console.log("test", e)
+eventHub.addEventListener("deleteEventEvent", e => {
+    deleteEvent(e.detail.eventId)
+    .then(() => {
+        dispatchStateChange();
+    })
 })

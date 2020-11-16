@@ -1,7 +1,7 @@
 const eventHub = document.querySelector(".container");
-const contentTarget = document.querySelector("#createForm");
 
 export const EventForm = () => {
+    const contentTarget = document.querySelector("#createForm");
 
     let [month, date, year] = new Date().toLocaleDateString("en-US").split("/")
 
@@ -9,7 +9,7 @@ export const EventForm = () => {
     <input type="date" id="createForm__eventDate" value="${year}-${month}-${date}">
     <input type="text" id="createForm__eventName" placeholder="Name">
     <input type="text" id="createForm__eventLocation" placeholder="Location">
-    <input type="button" id="createForm__addEventButton">Add Event</button>`;
+    <button id="createForm__addEventButton">Add Event</button>`;
     contentTarget.innerHTML = htmlRep;
 }
 
@@ -25,5 +25,8 @@ eventHub.addEventListener("click", e => {
         eventHub.dispatchEvent(new CustomEvent("addEventEvent", {
             detail
         }));
+    }
+    if(e.target.id === "eventButton") {
+        EventForm();
     }
 })

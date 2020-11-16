@@ -2,12 +2,13 @@ import { getUserByUserId } from "../users/UserProvider.js";
 import { Friend } from "./Friend.js";
 import { getFriendArrayByUser, getFriends } from "./FriendProvider.js"
 
-const contentTarget = document.querySelector(".asideRight__friendsList");
 const eventHub = document.querySelector(".container");
 
 let userId;
 
 export const FriendList = () => {
+    const contentTarget = document.querySelector(".asideRight__friendsList");
+
     // Find the user we are displaying for. Forced to be user 1 until auth is added.
     // userId = sessionStorage.getItem(`activeUser`)
     userId = 1;

@@ -1,3 +1,10 @@
+import { EventForm } from "./events/EventForm.js"
+import { EventList } from "./events/EventList.js"
+import { getEvents } from "./events/EventProvider.js"
+import { FriendList } from "./friends/FriendList.js"
+import { getFriends } from "./friends/FriendProvider.js"
+import { getUsers } from "./users/UserProvider.js"
+
 const mainBody = document.querySelector(".mainBody")
 
 export const Nutshell = () => {
@@ -92,4 +99,9 @@ Being displayed)>btn Remove</div>
       What about second breakfast? Sticky am fear dogs wondering slow surprisingly 24th outrunning incident ears EIf-witch. Overreacting several hell Sit slaughtered. </div>
   
 </aside>`
+getEvents()
+.then(getUsers)
+.then(getFriends)
+.then(FriendList)
+.then(EventList)
 }
