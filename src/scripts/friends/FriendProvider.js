@@ -35,30 +35,34 @@ export const getFriendByUserFriendIds = (user, friend) =>
 // Adds a friend to the friends list. Requires the active user id and the user id of the friend to be added.
 // When this method is called, it should be immediately followed by a call to dispatchStateChange().
 // This method is currently untested.
-export const addFriend = (user, friend) => {
+export const addFriend = (userId, friendId) => {
 
     // First we check that this relationship doesn't already exist.
     // TODO: Indicate to the user that they are already friends?
-    if (!getFriendByUserFriendIds(user.id, friend.id)) {
+    if (!getFriendByUserFriendIds(userId, friendId)) {
         // If the relationship doesn't exist, POST to the database.
         return fetch(`http://localhost:8088/friends`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: {
-                userId: user.id,
-                followingId: friend.id
-            }
+            body: JSON.stringify({
+                userId: userId,
+                followingId: friendId
+            })
         })
+        // If the relationship does exist, return the existing friend object.
+    } else {
+        return fetch(`http://localhost:8088/friends/${getFriendByUserFriendIds(userId, friendId).id}`)
+        .then(response => response.json())
     }
 }
 
 // Retrieves the friend to be deleted via helper method, initiates a DELETE call to fetch().
 // Requires ids of both the active user and the friend user. When this method is called,
 // it should be immediately followed by a call to dispatchStateChange().
-export const deleteFriend = (user, friend) => {
-    const friendToDelete = getFriendByUserFriendIds(user, friend);
+export const deleteFriend = (userId, friendId) => {
+    const friendToDelete = getFriendByUserFriendIds(userId, friendId);
     return fetch(`http://localhost:8088/friends/${friendToDelete.id}`, {
         method: "DELETE"
     })
@@ -70,3 +74,8 @@ eventHub.addEventListener("deleteFriendEvent", e => {
     deleteFriend(e.detail.userId, e.detail.friendId)
         .then(dispatchStateChange);
 });
+
+eventHub.addEventListener("addFriendEvent", e => {
+    addFriend(e.detail.userId, e.detail.friendId)
+    .then(dispatchStateChange);
+})

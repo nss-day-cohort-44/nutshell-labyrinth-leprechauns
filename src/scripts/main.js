@@ -4,6 +4,8 @@ import { FriendList } from "./friends/FriendList.js";
 import { getFriends } from "./friends/FriendProvider.js";
 import { getUsers } from "./users/UserProvider.js"
 import { Nutshell } from "./Nutshell.js"
+// LoginForm()
+// RegisterForm()
 
 LoginForm();
 getFriends()

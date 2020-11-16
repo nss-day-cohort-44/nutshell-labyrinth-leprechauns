@@ -21,7 +21,8 @@ export const FriendList = () => {
 }
 
 const AddFriendButton = () => {
-    return "<button>Add Friend</button>";
+    return `<button id="addFriendButton">Add Friend</button>
+    <input type="text" placeholder="Username" id="addFriendTextInput">`;
 }
 
 const AddDeleteButton = (id) => {
@@ -31,7 +32,7 @@ const AddDeleteButton = (id) => {
 // Listen for the delete user button being clicked. Dispatch an event containing the friend id and
 // the active user id.
 eventHub.addEventListener("click", e => {
-    if(e.target.id.startsWith("deleteFriend--")) {
+    if (e.target.id.startsWith("deleteFriend--")) {
         const [temp, friendId] = e.target.id.split("--");
         const deleteEvent = new CustomEvent("deleteFriendEvent", {
             detail: {
@@ -40,6 +41,27 @@ eventHub.addEventListener("click", e => {
             }
         })
         eventHub.dispatchEvent(deleteEvent);
+    }
+    if (e.target.id === "addFriendButton") {
+        const username = document.querySelector("#addFriendTextInput").value
+        fetch(`http://localhost:8088/users/?username=${username}`)
+            .then(response => response.json())
+            .then(response => {
+                if (response.length > 0) {
+                    if (window.confirm(`Do you really want to add ${response[0].username} to your friends?`)) {
+                        const addEvent = new CustomEvent("addFriendEvent", {
+                            detail: {
+                                //userId: sessionStorage.getItem("activeUser")
+                                userId: 1,
+                                friendId: response[0].id
+                            }
+                        });
+                        eventHub.dispatchEvent(addEvent);
+                    }
+                } else {
+                    // Display user not found message.
+                }
+            });
     }
 })
 
