@@ -34,6 +34,7 @@ export const getFriendByUserFriendIds = (user, friend) =>
 
 // Adds a friend to the friends list. Requires the active user id and the user id of the friend to be added.
 // When this method is called, it should be immediately followed by a call to dispatchStateChange().
+// This method is currently untested.
 export const addFriend = (user, friend) => {
 
     // First we check that this relationship doesn't already exist.
@@ -65,7 +66,7 @@ export const deleteFriend = (user, friend) => {
 
 // Listens for an event from FriendList module which indicates a friend has been deleted,
 // calls deleteFriend() and dispatches a state change event.
-eventHub.addEventListener("deleteFriendButtonClicked", e => {
-    deleteFriend(e.detail.userId, e.detail.friendId);
-    dispatchStateChange();
+eventHub.addEventListener("deleteFriendEvent", e => {
+    deleteFriend(e.detail.userId, e.detail.friendId)
+        .then(dispatchStateChange);
 });

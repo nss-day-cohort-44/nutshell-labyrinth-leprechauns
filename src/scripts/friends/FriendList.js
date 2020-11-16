@@ -33,7 +33,7 @@ const AddDeleteButton = (id) => {
 eventHub.addEventListener("click", e => {
     if(e.target.id.startsWith("deleteFriend--")) {
         const [temp, friendId] = e.target.id.split("--");
-        const deleteEvent = new CustomEvent("deleteFriendButtonClicked", {
+        const deleteEvent = new CustomEvent("deleteFriendEvent", {
             detail: {
                 userId,
                 friendId: parseInt(friendId)
