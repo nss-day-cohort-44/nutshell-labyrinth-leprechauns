@@ -1,8 +1,9 @@
 import { LoginForm } from "./auth/LoginForm.js"
 import { RegisterForm } from "./auth/RegisterForm.js"
+import { renderNewsButton } from "./news/NewsButton.js"
+import { newsClickEventHeard } from "./news/NewsForm.js"
 import { Nutshell } from "./Nutshell.js"
-// LoginForm()
-// RegisterForm()
+
 
 
 /*
@@ -12,3 +13,6 @@ import { Nutshell } from "./Nutshell.js"
     4. Also, if the user authenticates, and the login form is initially shown
         ensure that the Nutshell component gets rendered
 */
+
+renderNewsButton()
+newsClickEventHeard()

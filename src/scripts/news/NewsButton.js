@@ -1,0 +1,20 @@
+const contentTarget = document.querySelector("#newsButton")
+const eventHub = document.querySelector(".container")
+// rendering button to the correct content Target
+export const renderNewsButton = () =>{
+    contentTarget.innerHTML=`
+    <button id="postArticleButton"> Post News Article</button>
+    `
+}
+// event dispatched that listens for the post Article Button click
+eventHub.addEventListener("click", event =>{
+    if (event.target.id === "postArticleButton"){
+        const customEvent = new CustomEvent("postArticleButtonClicked", {
+            detail:{
+                articleId: event.target.value
+            }
+        })
+        eventHub.dispatchEvent(customEvent)
+        console.log("Post Article Button Clicked")
+    }
+})

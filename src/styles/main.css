@@ -98,3 +98,11 @@ header{
     overflow: scroll;
     overflow-x: hidden;
 }
+
+.articleCard{
+    display: flex;
+	flex: 1;
+	flex-wrap: wrap;
+	flex-direction: column;
+	border: 2px inset black;
+}
