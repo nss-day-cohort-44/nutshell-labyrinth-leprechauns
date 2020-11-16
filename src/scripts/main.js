@@ -1,7 +1,12 @@
 import { LoginForm } from "./auth/LoginForm.js"
 import { RegisterForm } from "./auth/RegisterForm.js"
 import { Nutshell } from "./Nutshell.js"
-import {displayTaskButton} from "./TaskButton.js"
+import {displayTaskButton} from "./tasks/TaskButton.js"
+import { TaskFormRender } from "./tasks/TaskList.js"
+
+// LoginForm()
+// RegisterForm()
+
 
 /*
     1. Check if the user is authenticated by looking in session storage for `activeUser`
@@ -11,3 +16,4 @@ import {displayTaskButton} from "./TaskButton.js"
         ensure that the Nutshell component gets rendered
 */
 displayTaskButton()
+TaskFormRender()

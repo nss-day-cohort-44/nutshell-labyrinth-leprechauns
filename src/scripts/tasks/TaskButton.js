@@ -3,7 +3,7 @@
 export const displayTaskButton = () => {
     const contentTarget = document.querySelector("#taskButton")
 
-    return contentTarget.innerHTML += '<button id = "task">Task</button>'
+    return contentTarget.innerHTML += '<button id = "task">Create Task</button>'
 }
 
 // This is an eventHub that looks for a click on the task button and dispatches a new event 
