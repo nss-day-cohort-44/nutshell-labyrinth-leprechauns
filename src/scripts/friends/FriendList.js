@@ -8,8 +8,11 @@ const eventHub = document.querySelector(".container");
 let userId;
 
 export const FriendList = () => {
-    //    userId = sessionStorage.getItem(`activeUser`)
+    // Find the user we are displaying for. Forced to be user 1 until auth is added.
+    // userId = sessionStorage.getItem(`activeUser`)
     userId = 1;
+    // Get an array of all this user's friends (see FriendProvider module), then get an array of
+    // user objects from the friends (see UserProvider module).
     const friendArr = getFriendArrayByUser(userId).map(fr => getUserByUserId(fr.followingId));
     let htmlRep = "<h3>Friends List</h3>";
     htmlRep += AddFriendButton();
@@ -25,6 +28,8 @@ const AddDeleteButton = (id) => {
     return `<button id="deleteFriend--${id}">Delete</button>`;
 }
 
+// Listen for the delete user button being clicked. Dispatch an event containing the friend id and
+// the active user id.
 eventHub.addEventListener("click", e => {
     if(e.target.id.startsWith("deleteFriend--")) {
         const [temp, friendId] = e.target.id.split("--");

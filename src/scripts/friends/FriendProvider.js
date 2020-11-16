@@ -12,11 +12,14 @@ export const getFriends = () => {
         .then(response => friends = response);
 }
 
+// Dispatch an event indicating that our data has changed in some way. Listened for in FriendList module.
 const dispatchStateChange = () => {
     eventHub.dispatchEvent(new CustomEvent("friendListStateChanged"))
 }
 
+// Returns an array of all friends of a particular user. Requires either a user id or a user object.
 export const getFriendArrayByUser = user => {
+    // This checks whether we were given an id or an object, and ajusts the filter() call respectively.
     if (typeof (user) === "number")
         return useFriends().filter(fr => fr.userId === user)
     else if (typeof (user) === "object")
@@ -25,13 +28,18 @@ export const getFriendArrayByUser = user => {
     return undefined;
 }
 
+// Finds a single friend object. Requires the user's id and the friend's user id.
 export const getFriendByUserFriendIds = (user, friend) =>
     useFriends().find(fr => fr.userId === user && fr.followingId === friend)
 
+// Adds a friend to the friends list. Requires the active user id and the user id of the friend to be added.
+// When this method is called, it should be immediately followed by a call to dispatchStateChange().
 export const addFriend = (user, friend) => {
 
+    // First we check that this relationship doesn't already exist.
+    // TODO: Indicate to the user that they are already friends?
     if (!getFriendByUserFriendIds(user.id, friend.id)) {
-        const addFriendEvent = new CustomEvent
+        // If the relationship doesn't exist, POST to the database.
         return fetch(`http://localhost:8088/friends`, {
             method: "POST",
             headers: {
@@ -41,20 +49,23 @@ export const addFriend = (user, friend) => {
                 userId: user.id,
                 followingId: friend.id
             }
-        }).then(getFriends)
+        })
     }
 }
 
+// Retrives the friend to be deleted use helper method, initiates a DELETE call to fetch().
+// Requires ids of both the active user and the friend user. When this method is called,
+// it should be immediately followed by a call to dispatchStateChange().
 export const deleteFriend = (user, friend) => {
     const friendToDelete = getFriendByUserFriendIds(user, friend);
-    console.log(friendToDelete)
     return fetch(`http://localhost:8088/friends/${friendToDelete.id}`, {
         method: "DELETE"
     })
 }
 
+// Listens for an event from FriendList module which indicates a friend has been deleted,
+// calls deleteFriend() and dispatches a state change event.
 eventHub.addEventListener("deleteFriendButtonClicked", e => {
-    console.log("event fired", e)
     deleteFriend(e.detail.userId, e.detail.friendId);
     dispatchStateChange();
 });
