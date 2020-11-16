@@ -1,6 +1,13 @@
 import { InitialRender } from "./auth/InitialRender.js"
+import { FriendList } from "./friends/FriendList.js"
+import { getFriends } from "./friends/FriendProvider.js"
+import { getUsers } from "./users/UserProvider.js"
 
 InitialRender()
+getFriends().then(getUsers).then(FriendList)
+
+// LoginForm()
+// RegisterForm()
 
 /*
     1. Check if the user is authenticated by looking in session storage for `activeUser`
