@@ -1,0 +1,100 @@
+h2, footer{
+    text-align: center;
+}
+
+header{
+    border-bottom: 2px solid black;
+    text-align: center;
+}
+
+.mainBody{
+    display: flex;
+
+   
+}
+
+.asideLeft{
+    display: flex;
+    flex-direction: column;
+}
+
+.centerBody{
+    display: flex;
+    flex-direction: column;
+    border-left: 2px solid red;
+    border-right: 2px solid red;
+  
+}
+
+.asideRight{
+    display: flex;
+    flex-direction: column;
+}
+
+.asideLeft__user, .asideLeft__weather, .asideLeft__taskList, .asideLeft__eventList{
+    border: 2px black solid;
+    margin: 2%;
+}
+
+.centerBody__create, .centerBody__mainFeed{
+    border: 2px black solid;
+    margin: 2%;
+}
+
+.asideRight__friendsList, .asideRight__chat{
+    border: 2px black solid;
+    margin: 2%;
+    min-height: 350px;
+}
+
+.centerBody__create-Buttons{
+    display: flex;
+    justify-content: space-between;
+    margin: 5%;
+    border-top: 2px black solid;
+}
+
+.centerBody__create-submit{
+    display: flex;
+    justify-content: center;
+    margin: 1%;
+}
+
+.centerBody__mainFeed{
+    display: flex;
+    max-width: 750px;
+    padding: 10px;
+}
+
+.centerBody__eventFeed{
+    border-right: 2px solid black;
+    padding: 10px;
+}
+
+.eventWeather{
+    min-width: 240px;
+    min-height: 100px;
+    border: 2px solid black;
+    text-align: center;
+}
+
+.eventFeed{
+    margin-top: 10px;
+  
+}
+
+.eventCard{
+    min-width: 375px;
+}
+
+.newsFeed{
+    
+    margin-top: 10px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.centerBody__mainFeed{
+    height: 50vh;
+    overflow: scroll;
+    overflow-x: hidden;
+}
