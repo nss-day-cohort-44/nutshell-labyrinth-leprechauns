@@ -1,3 +1,8 @@
+/*  Author: Devin Kent
+    Purpose: Draw a list of friends for a given user; listen for add/delete friend events and
+        dispatch them to FriendProvider.js
+*/
+
 import { getUserByUserId } from "../users/UserProvider.js";
 import { Friend } from "./Friend.js";
 import { getFriendArrayByUser, getFriends } from "./FriendProvider.js"

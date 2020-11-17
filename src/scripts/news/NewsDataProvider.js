@@ -1,3 +1,5 @@
+import {getFriendArrayByUser} from '../friends/FriendProvider.js'
+
 let news = []
 
 export const getNews= () =>{
@@ -44,4 +46,22 @@ const dispatchStateChangeEvent = () =>{
     const newsStateChangedEvent = new CustomEvent("newsStateChanged")
 
     eventHub.dispatchEvent(newsStateChangedEvent)
+}
+
+export const getNewsArrayByUser = user => {
+    // Get a list of this user's friends.
+    const friends = getFriendArrayByUser(user);
+    if (typeof (user) === "number") {
+        // Loop through all events
+        return useNews().filter(ev => {
+            // If the event's userId matches the user, return it
+            if (user === ev.userId) {
+                return true;
+            } else {
+                // Otherwise, loop through the friends of this user and see if any friends
+                // match the ID of event's userId.
+                return friends.find(fr => fr.followingId === ev.userId)
+            }
+        })
+    }
 }

@@ -1,3 +1,7 @@
+/*  Author: Devin Kent
+    Purpose: Manage friend data.
+*/
+
 import { getUserByUserId } from "../users/UserProvider.js";
 
 let friends = [];

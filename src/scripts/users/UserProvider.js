@@ -1,3 +1,7 @@
+/*  Author: Devin Kent
+    Purpose: Manage user data.
+*/
+
 let users = [];
 
 export const useUsers = () => users.slice();
