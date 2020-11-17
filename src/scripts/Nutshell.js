@@ -1,18 +1,20 @@
-import { ChatList } from "./chat/ChatList.js"
-
-const mainBody = document.querySelector(".mainBody")
-import { displayTaskButton } from "./tasks/TaskButton.js"
-import { TaskFormRender, TaskList } from "./tasks/TaskList.js"
-import { renderNewsButton } from "./news/NewsButton.js"
-import { NewsList } from "./news/NewsList.js"
-import { newsClickEventHeard } from "./news/NewsForm.js"
-import { defaultWeather } from "./weather/WeatherSelect.js"
+import { EventList } from "./events/EventList.js"
+import { getEvents } from "./events/EventProvider.js"
+import { FriendList } from "./friends/FriendList.js"
 import { getFriends } from "./friends/FriendProvider.js"
 import { getUsers } from "./users/UserProvider.js"
-import { FriendList } from "./friends/FriendList.js"
+import { renderNewsButton } from "./news/NewsButton.js"
+import { newsClickEventHeard } from "./news/NewsForm.js"
+import { getNews } from "./news/NewsDataProvider.js"
+import { NewsList } from "./news/NewsList.js"
+import { displayTaskButton } from "./tasks/TaskButton.js"
+import { TaskFormRender, TaskList } from "./tasks/TaskList.js"
+import { defaultWeather } from "./weather/WeatherSelect.js"
+
+const mainBody = document.querySelector(".mainBody")
 
 export const Nutshell = () => {
-  mainBody.innerHTML = `
+    mainBody.innerHTML = `
   <aside class="asideLeft">
   <div class="asideLeft__user">
       <h2>---USER---</h2>
@@ -81,17 +83,13 @@ export const Nutshell = () => {
       
     </div>  
 </aside>`
-  displayTaskButton()
-  TaskFormRender()
-  TaskList()
-
-  renderNewsButton()
-  newsClickEventHeard()
-  NewsList()
-  defaultWeather()
-
-  getFriends().then(getUsers).then(FriendList)
-
-  ChatList()
-  // getEvents().then(EventList)
+displayTaskButton()
+TaskFormRender()
+TaskList()
+renderNewsButton()
+newsClickEventHeard()
+NewsList()
+defaultWeather()
+getFriends().then(getUsers).then(FriendList)
+getEvents().then(EventList)
 }

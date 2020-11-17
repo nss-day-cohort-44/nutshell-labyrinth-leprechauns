@@ -17,4 +17,4 @@ eventHub.addEventListener("click", event =>{
         eventHub.dispatchEvent(customEvent)
         console.log("Post Article Button Clicked")
     }
-})
+});
