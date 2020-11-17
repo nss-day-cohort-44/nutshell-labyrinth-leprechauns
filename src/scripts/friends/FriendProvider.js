@@ -18,7 +18,8 @@ export const getFriends = () => {
 
 // Dispatch an event indicating that our data has changed in some way. Listened for in FriendList module.
 const dispatchStateChange = () => {
-    eventHub.dispatchEvent(new CustomEvent("friendListStateChanged"))
+    eventHub.dispatchEvent(new CustomEvent("friendListStateChanged"));
+    eventHub.dispatchEvent(new CustomEvent("eventListStateChanged"));
 }
 
 // Returns an array of all friends of a particular user. Requires either a user id or a user object.

@@ -15,7 +15,8 @@ export const EventForm = () => {
     let htmlRep = `<h2>Add An Event</h2>
     <input type="date" id="createForm__eventDate" value="${year}-${month}-${date}">
     <input type="text" id="createForm__eventName" placeholder="Name">
-    <input type="text" id="createForm__eventLocation" placeholder="Location">
+    <input type="text" id="createForm__eventCity" placeholder="City">
+    <input type="text" id="createForm__eventState" placeholder="State">
     <button id="createForm__addEventButton">Add Event</button>`;
     contentTarget.innerHTML = htmlRep;
 }
@@ -26,12 +27,13 @@ eventHub.addEventListener("click", e => {
         const detail = {
             eventDate: document.querySelector("#createForm__eventDate").value,
             eventName: document.querySelector("#createForm__eventName").value,
-            eventLocation: document.querySelector("#createForm__eventLocation").value,
+            eventCity: document.querySelector("#createForm__eventCity").value,
+            eventState: document.querySelector("#createForm__eventState").value,
             //userId: sessionStorage.getItem("activeUser")
             userId: 1
         }
         // If one of the fields is empty, display an error and halt function execution.
-        if(!detail.eventDate || !detail.eventName || !detail.eventLocation) {
+        if(!detail.eventDate || !detail.eventName || !detail.eventCity || !detail.eventState) {
             window.alert("Please fill out all fields before submitting your event.")
             return;
         }
