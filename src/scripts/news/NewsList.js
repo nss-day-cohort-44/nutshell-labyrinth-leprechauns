@@ -24,6 +24,7 @@ const render = (articleArray) =>{
 }
 
 eventHub.addEventListener("click", event =>{
+    if (sessionStorage.activeUser)
     if (event.target.id.startsWith("deleteArticle--")){
         const [prefix, id] = event.target.id.split("--")
         
