@@ -33,9 +33,9 @@ export const defaultWeather = () => {
                 <img src="${iconAddress}">
                 </div>
                 <p class="date">${condensedDate}</p>
-                <p class="highTemp">High: ${high}<sup>o</sup></p>
-                <p class="lowTemp">Low: ${low}<sup>o</sup></p>
-                <p class="rainCondition">Forecast: ${precip}</p>
+                <p class="highTemp">High: ${high}&#8457;</p>
+                <p class="lowTemp">Low: ${low}&#8457;</p>
+                <p class="rainCondition">${precip}</p>
                 </div>
                 `
             }).join("")
@@ -73,9 +73,9 @@ export const eventWeather = (city, state) => {
                 <img src="${iconAddress}">
                 </div>
                 <p class="date">${condensedDate}</p>
-                <p class="highTemp">High: ${high}<sup>o</sup></p>
-                <p class="lowTemp">Low: ${low}<sup>o</sup></p>
-                <p class="rainCondition">Forecast: ${precip}</p>
+                <p class="highTemp">High: ${high}&#8457;</p>
+                <p class="lowTemp">Low: ${low}&#8457;</p>
+                <p class="rainCondition">${precip}</p>
                 </div>
                 `
             }).join("")
