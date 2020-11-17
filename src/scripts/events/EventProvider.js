@@ -2,6 +2,7 @@
     Purpose: Manage event data.
 */
 
+import { getFriendArrayByUser } from "../friends/FriendProvider.js";
 import { RenderCreateArea } from "../home/HomePage.js";
 
 let events = [];
@@ -37,10 +38,18 @@ const deleteEvent = eventId => {
 }
 
 export const getEventsArrayByUser = user => {
+    //debugger
+    const friends = getFriendArrayByUser(user);
     if(typeof(user) === "number")
-        return useEvents().filter(ev => user === ev.userId);
+        return useEvents().filter(ev => {
+            return user === ev.userId || friends.map(fr => {
+                return fr.followingId === ev.userId
+            })
+        });
     if(typeof(user) === "object")
-        return useEvents().filter(ev => user.id === ev.userId);
+        return useEvents().filter(ev => {
+            user.id === ev.userId || friends.find(fr => fr.userId === user.id).followingId === ev.userId
+        });
 }
 
 const dispatchStateChange = () => {

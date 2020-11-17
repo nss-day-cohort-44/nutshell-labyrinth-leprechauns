@@ -1,7 +1,8 @@
-const contentTarget = document.querySelector("#newsButton")
 const eventHub = document.querySelector(".container")
 // rendering button to the correct content Target
 export const renderNewsButton = () =>{
+    const contentTarget = document.querySelector("#newsButton")
+
     contentTarget.innerHTML=`
     <button id="postArticleButton"> Post News Article</button>
     `
@@ -17,4 +18,4 @@ eventHub.addEventListener("click", event =>{
         eventHub.dispatchEvent(customEvent)
         console.log("Post Article Button Clicked")
     }
-})
+});

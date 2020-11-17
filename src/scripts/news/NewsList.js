@@ -3,7 +3,6 @@ import { newsArticleCard } from "./NewsCard.js"
 import { deleteNews, getNews, useNews } from "./NewsDataProvider.js"
 
 const eventHub = document.querySelector(".container")
-const contentTarget = document.querySelector('.centerBody__newsFeed')
 
 eventHub.addEventListener("newsStateChanged", () =>NewsList())
 
@@ -16,6 +15,8 @@ export const NewsList = () =>{
 }
 
 const render = (articleArray) =>{
+    const contentTarget = document.querySelector('.centerBody__newsFeed')
+
     let articleHTMLRep = ""
     for (const articleObject of articleArray){
         articleHTMLRep += newsArticleCard(articleObject)
