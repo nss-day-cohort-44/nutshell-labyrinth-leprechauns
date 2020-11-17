@@ -1,3 +1,5 @@
+// Author: Travis Milner, Purpose: creating a button and listening for the click
+
 
 // This function is responsible for actually displaying the task button
 export const displayTaskButton = () => {
