@@ -37,18 +37,24 @@ const deleteEvent = eventId => {
     })
 }
 
+// Get an array of events for a specific users, including friends' events. Can take either a user object or an ID.
 export const getEventsArrayByUser = user => {
-    //debugger
+    // Get a list of this user's friends.
     const friends = getFriendArrayByUser(user);
     if (typeof (user) === "number") {
+        // Loop through all events
         return useEvents().filter(ev => {
+            // If the event's userId matches the user, return it
             if (user === ev.userId) {
                 return true;
             } else {
+                // Otherwise, loop through the friends of this user and see if any friends
+                // match the ID of event's userId.
                 return friends.find(fr => fr.followingId === ev.userId)
             }
         })
     }
+    // Same code, except if we are given an object instead of a number.
     if (typeof (user) === "object")
         return useEvents().filter(ev => {
             if (user.id === ev.userId) {
@@ -59,6 +65,7 @@ export const getEventsArrayByUser = user => {
         })
 }
 
+// Called after any changes to the database, listened for in EventList.js.
 const dispatchStateChange = () => {
     eventHub.dispatchEvent(new CustomEvent("eventListStateChanged"))
 }

@@ -14,7 +14,7 @@ export const EventList = () => {
 
     const evArray = getEventsArrayByUser(user);
     let htmlRep = "<h2>Event List</h2>"
-    htmlRep += evArray.map(ev => `${EventCard(ev)}${AddDeleteButton(ev.id)}`).join("");
+    htmlRep += evArray.map(ev => `${EventCard(ev)}${AddDeleteButton(ev)}`).join("");
     contentTarget.innerHTML = htmlRep;
 }
 
@@ -23,8 +23,12 @@ eventHub.addEventListener("eventListStateChanged", e => {
     .then(EventList);
 })
 
-const AddDeleteButton = id => {
-    return `<button id="deleteEvent--${id}">Delete</button>`;
+const AddDeleteButton = ev => {
+    // Only add a delete button if the active user created this event.
+    if(ev.userId === +sessionStorage.getItem("activeUser"))
+        return `<button id="deleteEvent--${ev.id}">Delete</button>`;
+    else
+        return ``;
 }
 
 eventHub.addEventListener("click", e => {
