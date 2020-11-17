@@ -15,7 +15,7 @@ import { Nutshell } from "./Nutshell.js"
 const mainBody = document.querySelector(".mainBody")
 const auth = document.querySelector(".auth")
 
-//sessionStorage.setItem("activeUser", 1);
+// sessionStorage.setItem("activeUser", 1);
 // If no activeUser, render loging and Registration form
 
 if (!sessionStorage.activeUser) {
