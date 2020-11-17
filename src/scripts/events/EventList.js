@@ -2,8 +2,9 @@
     Purpose: Draw the list of events.
 */
 
-import { getEventsArrayByUser, getEvents } from "./EventProvider.js";
+import { getEventsArrayByUser, getEvents, getEventById } from "./EventProvider.js";
 import { EventCard } from "./Event.js";
+import { eventWeather } from "../weather/WeatherSelect.js";
 
 
 const eventHub = document.querySelector(".container");
@@ -14,7 +15,7 @@ export const EventList = () => {
 
     const evArray = getEventsArrayByUser(user);
     let htmlRep = "<h2>Event List</h2>"
-    htmlRep += evArray.map(ev => `${EventCard(ev)}${AddDeleteButton(ev)}`).join("");
+    htmlRep += evArray.map(ev => `${EventCard(ev)}${AddDeleteButton(ev)}${AddWeatherButton(ev)}`).join("");
     contentTarget.innerHTML = htmlRep;
 }
 
@@ -31,6 +32,10 @@ const AddDeleteButton = ev => {
         return ``;
 }
 
+const AddWeatherButton = ev => {
+    return `<button id="eventWeather--${ev.id}">Show Weather</button>`;
+}
+
 eventHub.addEventListener("click", e => {
     if(e.target.id.startsWith("deleteEvent")) {
         const [temp, eventId] = e.target.id.split("--");
@@ -39,5 +44,10 @@ eventHub.addEventListener("click", e => {
                 eventId
             }
         }))
+    }
+    if(e.target.id.startsWith("eventWeather")) {
+        const [temp, eventId] = e.target.id.split("--");
+        const ev = getEventById(parseInt(eventId));
+        eventWeather(ev.eventCity, ev.eventState);
     }
 })

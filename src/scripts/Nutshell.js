@@ -10,6 +10,7 @@ import { NewsList } from "./news/NewsList.js"
 import { displayTaskButton } from "./tasks/TaskButton.js"
 import { TaskFormRender, TaskList } from "./tasks/TaskList.js"
 import { defaultWeather } from "./weather/WeatherSelect.js"
+import "./events/EventForm.js"
 
 const mainBody = document.querySelector(".mainBody")
 
