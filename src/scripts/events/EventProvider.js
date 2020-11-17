@@ -16,7 +16,7 @@ export const getEvents = () => {
         .then(response => events = response);
 }
 
-const addEvent = (name, location, eventDate, userId) => {
+const addEvent = (name, eventCity, eventState, eventDate, userId) => {
     return fetch(`http://localhost:8088/events`, {
         method: "POST",
         headers: {
@@ -24,7 +24,8 @@ const addEvent = (name, location, eventDate, userId) => {
         },
         body: JSON.stringify({
             name,
-            location,
+            eventCity,
+            eventState,
             eventDate,
             userId
         })
@@ -36,6 +37,8 @@ const deleteEvent = eventId => {
         method: "DELETE"
     })
 }
+
+export const getEventById = id => useEvents().find(ev => ev.id === id);
 
 // Get an array of events for a specific users, including friends' events. Can take either a user object or an ID.
 export const getEventsArrayByUser = user => {
@@ -71,7 +74,7 @@ const dispatchStateChange = () => {
 }
 
 eventHub.addEventListener("addEventEvent", e => {
-    addEvent(e.detail.eventName, e.detail.eventLocation, e.detail.eventDate, e.detail.userId)
+    addEvent(e.detail.eventName, e.detail.eventCity, e.detail.eventState, e.detail.eventDate, e.detail.userId)
         .then(() => {
             dispatchStateChange();
             RenderCreateArea();

@@ -15,7 +15,6 @@ export const getMessages = () => {
     .then((response) => response.json())
     .then((parsedMesssages) => {
       messages = parsedMesssages
-      console.log(messages)
     })
 }
 
@@ -29,4 +28,10 @@ export const saveMessage = (message) => {
   })
     .then(getMessages)
     .then(dispatchStateChangeEvent)
+}
+
+export const deleteMessage = (messageId) => {
+  return fetch(`http://localhost:8088/messages/${messageId}`, {
+    method: "DELETE",
+  }).then(getMessages)
 }

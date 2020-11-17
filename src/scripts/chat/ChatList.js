@@ -2,8 +2,9 @@
 
 import { getUsers, useUsers } from "../users/UserProvider.js"
 import { Message } from "./Message.js"
-import { getMessages, saveMessage, useMessages } from "./chatProvider.js"
+import { getMessages, saveMessage, useMessages, deleteMessage } from "./chatProvider.js"
 import { renderMessageForm } from "./ChatForm.js"
+import { addFriend } from "../friends/FriendProvider.js"
 
 const eventHub = document.querySelector(".container")
 
@@ -33,7 +34,7 @@ eventHub.addEventListener("chatStateChanged", (event) => {
 const render = (messagesArr, userArr, target) => {
   target.innerHTML = `
 <h4>Chats</h4>
-<div class="asideRight__chat__output"
+<div class="asideRight__chat__output">
 ${messagesArr
   .map((message) => {
     const messageAuthor = userArr.find((user) => {
@@ -62,5 +63,44 @@ eventHub.addEventListener("click", (e) => {
     }
     saveMessage(newMessage)
     ChatList()
+  }
+})
+
+eventHub.addEventListener("click", (clickEvent) => {
+  if (clickEvent.target.id.startsWith("deleteMessage--")) {
+    const [prefix, id] = clickEvent.target.id.split("--")
+    deleteMessage(id).then(() => {
+      const updateMessages = useMessages()
+      ChatList()
+    })
+  }
+})
+
+eventHub.addEventListener("click", e => {
+  if(e.target.id.startsWith("addFriendFromMessage")) {
+    const [temp, friendId] = e.target.id.split("--");
+    const addFriend = new CustomEvent("addFriendEvent", {
+      detail: {
+        userId: parseInt(sessionStorage.getItem("activeUser")),
+        friendId: parseInt(friendId)
+      }
+    });
+    eventHub.dispatchEvent(addFriend);
+  }
+});
+
+eventHub.addEventListener("click", (clickEvent) => {
+  if (clickEvent.target.id.startsWith("deleteEntry--")) {
+    const [prefix, id] = clickEvent.target.id.split("--")
+    /*
+            Invoke the function that performs the delete operation.
+
+            Once the operation is complete you should THEN invoke
+            useNotes() and render the note list again.
+        */
+    deleteEntry(id).then(() => {
+      const updatedEntries = useJournalEntries()
+      render(updatedEntries)
+    })
   }
 })

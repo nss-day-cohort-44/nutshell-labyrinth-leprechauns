@@ -1,3 +1,4 @@
+import { ChatList } from "./chat/ChatList.js"
 import { EventList } from "./events/EventList.js"
 import { getEvents } from "./events/EventProvider.js"
 import { FriendList } from "./friends/FriendList.js"
@@ -10,7 +11,12 @@ import { NewsList } from "./news/NewsList.js"
 import { displayTaskButton } from "./tasks/TaskButton.js"
 import { TaskFormRender, TaskList } from "./tasks/TaskList.js"
 import { defaultWeather } from "./weather/WeatherSelect.js"
+<<<<<<< HEAD
 import './events/EventForm.js'
+=======
+import "./events/EventForm.js"
+
+>>>>>>> master
 const mainBody = document.querySelector(".mainBody")
 
 export const Nutshell = () => {
@@ -94,4 +100,5 @@ NewsList()
 defaultWeather()
 getFriends().then(getUsers).then(FriendList)
 getEvents().then(EventList)
+ChatList();
 }

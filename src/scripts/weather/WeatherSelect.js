@@ -55,7 +55,11 @@ export const eventWeather = (city, state) => {
             const nashWeather = useWeather()
             const h4Target = document.querySelector(".h4Nashville")
             const fiveDayWeather = nashWeather.daily.slice(0, 5)
-            const weatherHTML = fiveDayWeather.map(day => {
+            let weatherArr = [];
+            for( let i = 0; i < 1; i++ ) {
+                weatherArr.push(fiveDayWeather[i]);
+            }
+            const weatherHTML = weatherArr.map(day => {
                 const datept1 = day.dt * 1000
                 const humanDate = new Date(datept1)
                 const condensedDate = humanDate.toLocaleDateString("en-US", {
@@ -80,7 +84,7 @@ export const eventWeather = (city, state) => {
                 `
             }).join("")
             h4Target.innerHTML = `<h4>${city} Forecast</h4>`
-            htmlTarget.innerHTML += weatherHTML
+            htmlTarget.innerHTML = weatherHTML
         })
     })
     }
