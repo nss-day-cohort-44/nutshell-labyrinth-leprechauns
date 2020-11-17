@@ -23,10 +23,10 @@ export const newsClickEventHeard = () =>{
 eventHub.addEventListener("click", clickEvent =>{
     const contentTarget = document.querySelector("#createForm")
     const id = document.querySelector("#articleId")
-    const titleOfArticle = document.querySelector("#titleOfArticle").value
-        const synopsisOfArticle = document.querySelector("#aboutArticle").value
-        const urlOfArticle = document.querySelector("#articleUrl").value
     if(clickEvent.target.id === "saveNewsArticle"){
+        const titleOfArticle = document.querySelector("#titleOfArticle").value
+            const synopsisOfArticle = document.querySelector("#aboutArticle").value
+            const urlOfArticle = document.querySelector("#articleUrl").value
         if(id.value === "" && titleOfArticle !== "" || synopsisOfArticle !== "" || urlOfArticle !== ""){ 
         const timeOfArticlePost = Date.now()
         const titleOfArticle = document.querySelector("#titleOfArticle").value

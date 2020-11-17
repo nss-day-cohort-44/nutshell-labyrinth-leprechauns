@@ -58,8 +58,7 @@ export const Nutshell = () => {
   <div class="centerBody__mainFeed">
 
       <div class="centerBody__eventFeed">
-          <h2>---Event Feed---</h2>
-          <div class="eventWeather">--EVENT WEATHER--</div>
+          
           <div class="eventFeed">
               <div class="eventCard">
 
