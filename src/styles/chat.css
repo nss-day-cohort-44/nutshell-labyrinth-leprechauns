@@ -3,6 +3,9 @@
   flex-direction: column-reverse;
   height: 210px;
   overflow: scroll;
+  width: 325px;
+  word-wrap: break-word;
+  overflow-x: hidden;
 }
 
 .asideRight__chat__output p {

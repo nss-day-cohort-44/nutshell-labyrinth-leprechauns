@@ -2,7 +2,7 @@
 
 export const Message = (userObj, messageObj) => {
   return `
-  <p>${userObj.username}: ${messageObj.message} ${AddDeleteButton(messageObj)}</p>
+  <p>${userObj.username}: ${messageObj.message} ${AddDeleteButton(messageObj)}
   <button id="addFriendFromMessage--${messageObj.userId}" class="btn">add friend</button></p>
   `
 }
