@@ -55,7 +55,7 @@ eventHub.addEventListener("click", e => {
                     if (window.confirm(`Do you really want to add ${response[0].username} to your friends?`)) {
                         const addEvent = new CustomEvent("addFriendEvent", {
                             detail: {
-                                userId: sessionStorage.getItem("activeUser"),
+                                userId: parseInt(sessionStorage.getItem("activeUser")),
                                 friendId: response[0].id
                             }
                         });
