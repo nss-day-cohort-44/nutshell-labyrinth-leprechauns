@@ -36,6 +36,7 @@ const render = (messagesArr, userArr, target) => {
 <div class="asideRight__chat__output">
 ${messagesArr
   .map((message) => {
+    console.log(message)
     const messageAuthor = userArr.find((user) => {
       return user.id === message.userId
     })
