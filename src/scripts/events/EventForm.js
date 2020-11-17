@@ -22,6 +22,10 @@ eventHub.addEventListener("click", e => {
             //userId: sessionStorage.getItem("activeUser")
             userId: 1
         }
+        if(!detail.eventDate || !detail.eventName || !detail.eventLocation) {
+            window.alert("Please fill out all fields before submitting your event.")
+            return;
+        }
         eventHub.dispatchEvent(new CustomEvent("addEventEvent", {
             detail
         }));
