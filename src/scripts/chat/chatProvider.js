@@ -7,7 +7,7 @@ const dispatchStateChangeEvent = () => {
 }
 
 export const useMessages = () => {
-  return messages.slice()
+  return messages.slice().sort((a, b) => b.postTime - a.postTime)
 }
 
 export const getMessages = () => {
