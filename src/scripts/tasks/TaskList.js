@@ -31,7 +31,7 @@ export const render = (taskArray) => {
     const taskContainer = document.querySelector(".asideLeft__taskList")
     let taskHTMLRepresentations = "<h2>---Task List---</h2>"
     const incompleteTasks = taskArray.filter(task =>  {
-       return !task.completed && task.userId === 1
+       return !task.completed && task.userId === +sessionStorage.getItem("activeUser")
     })
     for (const task of incompleteTasks) {
         taskHTMLRepresentations += TaskEntryComponent(task)
