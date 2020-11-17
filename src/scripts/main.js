@@ -3,6 +3,7 @@ import { RegisterForm } from "./auth/RegisterForm.js"
 import { Nutshell } from "./Nutshell.js"
 import {displayTaskButton} from "./tasks/TaskButton.js"
 import { TaskFormRender } from "./tasks/TaskList.js"
+import {TaskList} from "./tasks/TaskList.js"
 
 // LoginForm()
 // RegisterForm()
@@ -21,6 +22,7 @@ getFriends().then(getUsers).then(FriendList)
 */
 displayTaskButton()
 TaskFormRender()
+TaskList()
 // On page load this function determines if an activeUser is set and if so it renders the main App and if not it renders the login and reg form
 
 const mainBody = document.querySelector(".mainBody")
