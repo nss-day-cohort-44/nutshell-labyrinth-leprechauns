@@ -1,3 +1,7 @@
+/*  Author: Devin Kent
+    Purpose: Draw the list of events.
+*/
+
 import { getEventsArrayByUser, getEvents } from "./EventProvider.js";
 import { EventCard } from "./Event.js";
 

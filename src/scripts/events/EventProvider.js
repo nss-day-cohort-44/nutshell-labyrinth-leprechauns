@@ -1,3 +1,7 @@
+/*  Author: Devin Kent
+    Purpose: Manage event data.
+*/
+
 import { RenderCreateArea } from "../home/HomePage.js";
 
 let events = [];

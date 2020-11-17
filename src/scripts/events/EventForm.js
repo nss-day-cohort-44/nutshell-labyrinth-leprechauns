@@ -1,3 +1,7 @@
+/*  Author: Devin Kent
+    Purpose: Draw the form for adding a new event, dispatch JS events to EventProvider.js.
+*/
+
 const eventHub = document.querySelector(".container");
 
 export const EventForm = () => {
