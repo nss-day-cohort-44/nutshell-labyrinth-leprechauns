@@ -17,7 +17,7 @@ import { NewsList } from "./news/NewsList.js"
 import { defaultWeather } from "./weather/WeatherSelect.js"
 
 
-getFriends().then(getUsers).then(FriendList)
+
 
 /*
     1. Check if the user is authenticated by looking in session storage for `activeUser`
@@ -26,17 +26,18 @@ getFriends().then(getUsers).then(FriendList)
     4. Also, if the user authenticates, and the login form is initially shown
         ensure that the Nutshell component gets rendered
 */
-displayTaskButton()
-TaskFormRender()
-TaskList()
+// displayTaskButton()
+// TaskFormRender()
+// TaskList()
 
 
-renderNewsButton()
-newsClickEventHeard()
+// renderNewsButton()
+// newsClickEventHeard()
 // On page load this function determines if an activeUser is set and if so it renders the main App and if not it renders the login and reg form
 
 const mainBody = document.querySelector(".mainBody")
 const auth = document.querySelector(".auth")
+// Nutshell()
 
 // If no activeUser, render loging and Registration form
 
@@ -49,12 +50,12 @@ if (!sessionStorage.activeUser) {
 
 // If activeUser, render main App
 
-// if (sessionStorage.activeUser) {
-//   console.log(sessionStorage)
-//   mainBody.classList.remove(".hide")
-//   auth.classList.add(".hide")
-//   Nutshell()
-// }
+if (sessionStorage.activeUser) {
+  console.log(sessionStorage)
+  mainBody.classList.remove(".hide")
+  auth.classList.add(".hide")
+  Nutshell()
+}
 
-NewsList()
-defaultWeather()
+// NewsList()
+// defaultWeather()

@@ -5,7 +5,6 @@ import { TaskHtml } from "./TaskForm.js"
 import { getTasks, useTasks } from "./TaskDataProvider.js"
 import { TaskEntryComponent } from "./TaskEntry.js"
 
-const taskContainer = document.querySelector(".asideLeft__taskList")
 
 const eventHub = document.querySelector(".container")
 
@@ -20,7 +19,7 @@ export const TaskFormRender = () => {
     })
 }
 // this function is responsible for getting the tasks from the database and then rendering those tasks
- export const TaskList = () => {
+export const TaskList = () => {
     getTasks()
     .then (() => {
         const allTasks = useTasks()
@@ -29,6 +28,7 @@ export const TaskFormRender = () => {
 }
 // this is responsible for rendering your tasks. Later on this condtional needs to be changed to reflect the current user
 export const render = (taskArray) => {
+    const taskContainer = document.querySelector(".asideLeft__taskList")
     let taskHTMLRepresentations = "<h2>---Task List---</h2>"
     const incompleteTasks = taskArray.filter(task =>  {
        return !task.completed && task.userId === 1

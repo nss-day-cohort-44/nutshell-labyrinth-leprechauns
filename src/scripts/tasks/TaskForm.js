@@ -8,7 +8,7 @@ const eventHub = document.querySelector(".container")
 export const TaskHtml = () => {
     const contentTarget = document.querySelector("#createForm")
 
-    return contentTarget.innerHTML += `
+    return contentTarget.innerHTML = `
         <form id = "taskForm">
             <input type = "text" placeholder = "Task..." id="taskField"></input><br>
             <label for = "date">Expected Completion Date</label><br>
