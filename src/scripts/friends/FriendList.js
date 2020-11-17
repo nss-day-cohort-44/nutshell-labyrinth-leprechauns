@@ -14,8 +14,7 @@ let userId;
 export const FriendList = () => {
     const contentTarget = document.querySelector(".asideRight__friendsList");
     // Find the user we are displaying for. Forced to be user 1 until auth is added.
-    // userId = sessionStorage.getItem(`activeUser`)
-    userId = 1;
+    userId = parseInt(sessionStorage.getItem(`activeUser`))
     // Get an array of all this user's friends (see FriendProvider module), then get an array of
     // user objects from the friends array (see UserProvider module).
     const friendArr = getFriendArrayByUser(userId).map(fr => getUserByUserId(fr.followingId));
@@ -56,8 +55,7 @@ eventHub.addEventListener("click", e => {
                     if (window.confirm(`Do you really want to add ${response[0].username} to your friends?`)) {
                         const addEvent = new CustomEvent("addFriendEvent", {
                             detail: {
-                                //userId: sessionStorage.getItem("activeUser")
-                                userId: 1,
+                                userId: sessionStorage.getItem("activeUser"),
                                 friendId: response[0].id
                             }
                         });
