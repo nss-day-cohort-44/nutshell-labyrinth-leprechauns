@@ -37,6 +37,17 @@ eventHub.addEventListener("click", clickEvent =>{
             userId
         }
         saveNews(newArticlePost)
+        .then(contentTarget.innerHTML =`
+        <h6>Title Of Article</h6>
+        <input type="hidden" name="articleId" id="articleId">
+        <input type="text" id="titleOfArticle" name="titleOfArticle">
+        <h6>Synopsis of Article</h6>
+        <input type="text" id="aboutArticle" name="aboutArticle">
+        <h6>Url</h6>
+        <input type="text" id="articleUrl" name="articleUrl">
+        <br>
+        <button id="saveNewsArticle">Post</button>
+        `)
     }
     // else if(clickEvent.target.id === "saveNewsArticle" && document.querySelector("#titleOfArticle").value !== "" && document.querySelector("#aboutArticle") !== "" && document.querySelector("#articleUrl")){
     //     const timeOfArticlePost = Date.now()

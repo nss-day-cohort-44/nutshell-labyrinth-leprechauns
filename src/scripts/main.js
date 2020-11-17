@@ -10,6 +10,7 @@ import { getUsers } from "./users/UserProvider.js"
 import { NewsList } from "./news/NewsList.js"
 import { defaultWeather } from "./weather/WeatherSelect.js"
 
+
 getFriends().then(getUsers).then(FriendList)
 
 /*
@@ -19,6 +20,7 @@ getFriends().then(getUsers).then(FriendList)
     4. Also, if the user authenticates, and the login form is initially shown
         ensure that the Nutshell component gets rendered
 */
+
 
 renderNewsButton()
 newsClickEventHeard()

@@ -2,6 +2,9 @@ h2,
 footer {
   text-align: center;
 }
+h4{
+    text-align: center;
+}
 
 header {
   border-bottom: 2px solid black;
@@ -67,6 +70,7 @@ header {
   display: flex;
   max-width: 750px;
   padding: 10px;
+  min-height: 500px;
 }
 
 .centerBody__eventFeed {
@@ -132,4 +136,10 @@ header {
     display: flex;
     justify-content: space-evenly;
     margin: 2%;
+}
+
+.weatherDay{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
