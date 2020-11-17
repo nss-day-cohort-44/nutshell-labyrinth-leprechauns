@@ -40,7 +40,7 @@ export const defaultWeather = () => {
                 `
             }).join("")
             h4Target.innerHTML = `<h4>Nashville Forecast</h4>`
-            htmlTarget.innerHTML += weatherHTML
+            htmlTarget.innerHTML = weatherHTML
         })
     })
     }

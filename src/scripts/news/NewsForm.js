@@ -1,11 +1,11 @@
 import { saveNews } from "./NewsDataProvider.js"
 
-const contentTarget = document.querySelector("#createForm")
 const eventHub = document.querySelector(".container")
 export const newsClickEventHeard = () =>{
-
+    
     eventHub.addEventListener("postArticleButtonClicked", event =>{
         // console.log("Post Article click heard")
+        const contentTarget = document.querySelector("#createForm")
         contentTarget.innerHTML = `
         <h6>Title Of Article</h6>
         <input type="hidden" name="articleId" id="articleId">
@@ -21,6 +21,7 @@ export const newsClickEventHeard = () =>{
 }
 
 eventHub.addEventListener("click", clickEvent =>{
+    const contentTarget = document.querySelector("#createForm")
     const id = document.querySelector("#articleId")
     const titleOfArticle = document.querySelector("#titleOfArticle").value
         const synopsisOfArticle = document.querySelector("#aboutArticle").value
