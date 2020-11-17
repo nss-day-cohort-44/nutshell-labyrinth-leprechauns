@@ -93,4 +93,3 @@ defaultWeather()
 getFriends().then(getUsers).then(FriendList)
 getEvents().then(EventList)
 }
-
