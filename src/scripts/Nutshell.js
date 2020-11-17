@@ -1,3 +1,4 @@
+import { ChatList } from "./chat/ChatList.js"
 import { EventList } from "./events/EventList.js"
 import { getEvents } from "./events/EventProvider.js"
 import { FriendList } from "./friends/FriendList.js"
@@ -93,4 +94,5 @@ NewsList()
 defaultWeather()
 getFriends().then(getUsers).then(FriendList)
 getEvents().then(EventList)
+ChatList();
 }
