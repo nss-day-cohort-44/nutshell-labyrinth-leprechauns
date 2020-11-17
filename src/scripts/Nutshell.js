@@ -20,12 +20,14 @@ export const Nutshell = () => {
   <aside class="asideLeft">
   <div class="asideLeft__user">
       <h2>---USER---</h2>
+      </div>
   <div class="asideLeft__weather">
   <div class="h4Nashville">
                         </div>
                         <div class="weatherBox">
                             </div>
       <h2>---Weather---</h2>
+      </div>
   <div class="asideLeft__taskList">
       <h2>---Task List---</h2>
      </div>

@@ -23,7 +23,11 @@ export const newsClickEventHeard = () =>{
 eventHub.addEventListener("click", clickEvent =>{
     const contentTarget = document.querySelector("#createForm")
     const id = document.querySelector("#articleId")
-    if(clickEvent.target.id === "saveNewsArticle" && id.value === ""){
+    const titleOfArticle = document.querySelector("#titleOfArticle").value
+        const synopsisOfArticle = document.querySelector("#aboutArticle").value
+        const urlOfArticle = document.querySelector("#articleUrl").value
+    if(clickEvent.target.id === "saveNewsArticle"){
+        if(id.value === "" && titleOfArticle !== "" || synopsisOfArticle !== "" || urlOfArticle !== ""){ 
         const timeOfArticlePost = Date.now()
         const titleOfArticle = document.querySelector("#titleOfArticle").value
         const synopsisOfArticle = document.querySelector("#aboutArticle").value
@@ -49,7 +53,9 @@ eventHub.addEventListener("click", clickEvent =>{
         <br>
         <button id="saveNewsArticle">Post</button>
         `)
-    }
+    }else{window.alert("Please fill out all fields before submitting your article")
+                return;
+            }}
     // else if(clickEvent.target.id === "saveNewsArticle" && document.querySelector("#titleOfArticle").value !== "" && document.querySelector("#aboutArticle") !== "" && document.querySelector("#articleUrl")){
     //     const timeOfArticlePost = Date.now()
     //     const titleOfArticle = document.querySelector("#titleOfArticle").value

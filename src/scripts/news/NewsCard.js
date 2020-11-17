@@ -7,11 +7,18 @@ export const newsArticleCard = (article) => {
                 <p>Url: <a href="${article.urlOfArticle}" target="_blank">${article.titleOfArticle}</a></p>
                 <p>Posted by: ${article.user.username}</p>
                 <div class="delete">
-                <button class="deleteButton" id="deleteArticle--${article.id}">Delete</button>
-                <button class="editButton" id="editArticle--${article.id}">Edit</button>
+                ${renderDeleteButton(article)}
                 </div>
         </section>
     `
 }
 
 {/* <p>Posted by: ${article.user.userName}</p>  will be added when everthing is compiled properly*/}
+
+const renderDeleteButton = (article) =>{
+    if (article.userId === +sessionStorage.getItem("activeUser")){
+        return ` <button class="deleteButton" id="deleteArticle--${article.id}">Delete</button>`
+    }else{
+        return ``
+    }
+}
