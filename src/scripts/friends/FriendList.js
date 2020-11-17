@@ -71,5 +71,9 @@ eventHub.addEventListener("click", e => {
 // If the friend list changes for any reason (add, delete, edit) then update the friends list and redraw.
 eventHub.addEventListener("friendListStateChanged", e => {
     getFriends()
-        .then(FriendList);
+        .then(() => {
+            FriendList();
+            eventHub.dispatchEvent(new CustomEvent("newsStateChanged"));
+            eventHub.dispatchEvent(new CustomEvent("eventListStateChanged"));
+        })
 })
