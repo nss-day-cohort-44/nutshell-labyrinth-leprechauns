@@ -16,7 +16,6 @@ export const NewsList = () =>{
 
 const render = (articleArray) =>{
     const contentTarget = document.querySelector('.centerBody__newsFeed')
-
     let articleHTMLRep = ""
     for (const articleObject of articleArray){
         articleHTMLRep += newsArticleCard(articleObject)

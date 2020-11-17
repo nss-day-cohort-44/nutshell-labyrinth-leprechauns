@@ -13,7 +13,6 @@ let userId;
 
 export const FriendList = () => {
     const contentTarget = document.querySelector(".asideRight__friendsList");
-
     // Find the user we are displaying for. Forced to be user 1 until auth is added.
     // userId = sessionStorage.getItem(`activeUser`)
     userId = 1;

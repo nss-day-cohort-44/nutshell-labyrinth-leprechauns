@@ -43,6 +43,7 @@ export const getEventsArrayByUser = user => {
     if(typeof(user) === "number")
         return useEvents().filter(ev => {
             return user === ev.userId || friends.map(fr => {
+                debugger
                 return fr.followingId === ev.userId
             })
         });
