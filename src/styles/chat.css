@@ -1,0 +1,10 @@
+.asideRight__chat__output {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 210px;
+  overflow: scroll;
+}
+
+.asideRight__chat__output p {
+  margin: 0.5rem;
+}

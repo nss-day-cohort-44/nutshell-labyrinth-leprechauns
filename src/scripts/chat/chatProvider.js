@@ -2,8 +2,8 @@ let messages = []
 const eventHub = document.querySelector(".container")
 
 const dispatchStateChangeEvent = () => {
-  const noteStateChangeEvent = new CustomEvent("noteStateChanged")
-  eventHub.dispatchEvent(noteStateChangeEvent)
+  const chatStateChangeEvent = new CustomEvent("chatStateChanged")
+  eventHub.dispatchEvent(chatStateChangeEvent)
 }
 
 export const useMessages = () => {
@@ -20,7 +20,6 @@ export const getMessages = () => {
 }
 
 export const saveMessage = (message) => {
-  debugger
   return fetch("http://localhost:8088/messages", {
     method: "POST",
     headers: {
