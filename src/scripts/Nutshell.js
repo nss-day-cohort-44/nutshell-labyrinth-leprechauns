@@ -1,3 +1,8 @@
+import { renderNewsButton } from "./news/NewsButton.js"
+import { NewsList } from "./news/NewsList.js"
+import { defaultWeather } from "./weather/WeatherSelect.js"
+import {newsClickEventHeard} from "./news/NewsForm.js"
+
 const mainBody = document.querySelector(".mainBody")
 
 export const Nutshell = () => {
@@ -92,4 +97,5 @@ Being displayed)>btn Remove</div>
       What about second breakfast? Sticky am fear dogs wondering slow surprisingly 24th outrunning incident ears EIf-witch. Overreacting several hell Sit slaughtered. </div>
   
 </aside>`
+
 }

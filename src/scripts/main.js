@@ -10,7 +10,7 @@ import { getUsers } from "./users/UserProvider.js"
 import { NewsList } from "./news/NewsList.js"
 import { defaultWeather } from "./weather/WeatherSelect.js"
 
-
+Nutshell()
 getFriends().then(getUsers).then(FriendList)
 
 /*
@@ -22,8 +22,6 @@ getFriends().then(getUsers).then(FriendList)
 */
 
 
-renderNewsButton()
-newsClickEventHeard()
 // On page load this function determines if an activeUser is set and if so it renders the main App and if not it renders the login and reg form
 
 const mainBody = document.querySelector(".mainBody")
@@ -47,5 +45,3 @@ if (!sessionStorage.activeUser) {
 //   Nutshell()
 // }
 
-NewsList()
-defaultWeather()
