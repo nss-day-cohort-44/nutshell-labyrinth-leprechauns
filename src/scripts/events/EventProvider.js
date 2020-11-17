@@ -12,8 +12,8 @@ export const useEvents = () => events.slice();
 
 export const getEvents = () => {
     return fetch(`http://localhost:8088/events`)
-    .then(response => response.json())
-    .then(response => events = response);
+        .then(response => response.json())
+        .then(response => events = response);
 }
 
 const addEvent = (name, location, eventDate, userId) => {
@@ -40,17 +40,23 @@ const deleteEvent = eventId => {
 export const getEventsArrayByUser = user => {
     //debugger
     const friends = getFriendArrayByUser(user);
-    if(typeof(user) === "number")
+    if (typeof (user) === "number") {
         return useEvents().filter(ev => {
-            return user === ev.userId || friends.map(fr => {
-                debugger
-                return fr.followingId === ev.userId
-            })
-        });
-    if(typeof(user) === "object")
+            if (user === ev.userId) {
+                return true;
+            } else {
+                return friends.find(fr => fr.followingId === ev.userId)
+            }
+        })
+    }
+    if (typeof (user) === "object")
         return useEvents().filter(ev => {
-            user.id === ev.userId || friends.find(fr => fr.userId === user.id).followingId === ev.userId
-        });
+            if (user.id === ev.userId) {
+                return true;
+            } else {
+                return friends.find(fr => fr.followingId === ev.userId)
+            }
+        })
 }
 
 const dispatchStateChange = () => {
@@ -59,15 +65,15 @@ const dispatchStateChange = () => {
 
 eventHub.addEventListener("addEventEvent", e => {
     addEvent(e.detail.eventName, e.detail.eventLocation, e.detail.eventDate, e.detail.userId)
-    .then(() => {
-        dispatchStateChange();
-        RenderCreateArea();  
-    })
+        .then(() => {
+            dispatchStateChange();
+            RenderCreateArea();
+        })
 })
 
 eventHub.addEventListener("deleteEventEvent", e => {
     deleteEvent(e.detail.eventId)
-    .then(() => {
-        dispatchStateChange();
-    })
+        .then(() => {
+            dispatchStateChange();
+        })
 })
