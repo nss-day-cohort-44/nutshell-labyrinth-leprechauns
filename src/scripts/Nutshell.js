@@ -1,13 +1,15 @@
+import { ChatList } from "./chat/ChatList.js"
+
 const mainBody = document.querySelector(".mainBody")
-import {displayTaskButton} from "./tasks/TaskButton.js"
-import {TaskFormRender, TaskList} from "./tasks/TaskList.js"
-import {renderNewsButton} from "./news/NewsButton.js"
-import {NewsList} from "./news/NewsList.js"
-import {newsClickEventHeard} from "./news/NewsForm.js"
-import {defaultWeather} from "./weather/WeatherSelect.js"
-import {getFriends} from "./friends/FriendProvider.js"
-import {getUsers} from "./users/UserProvider.js"
-import {FriendList} from "./friends/FriendList.js"
+import { displayTaskButton } from "./tasks/TaskButton.js"
+import { TaskFormRender, TaskList } from "./tasks/TaskList.js"
+import { renderNewsButton } from "./news/NewsButton.js"
+import { NewsList } from "./news/NewsList.js"
+import { newsClickEventHeard } from "./news/NewsForm.js"
+import { defaultWeather } from "./weather/WeatherSelect.js"
+import { getFriends } from "./friends/FriendProvider.js"
+import { getUsers } from "./users/UserProvider.js"
+import { FriendList } from "./friends/FriendList.js"
 
 export const Nutshell = () => {
   mainBody.innerHTML = `
@@ -79,19 +81,17 @@ export const Nutshell = () => {
       
     </div>  
 </aside>`
-displayTaskButton()
-TaskFormRender()
-TaskList()
+  displayTaskButton()
+  TaskFormRender()
+  TaskList()
 
-renderNewsButton()
-newsClickEventHeard()
-NewsList()
-defaultWeather()
+  renderNewsButton()
+  newsClickEventHeard()
+  NewsList()
+  defaultWeather()
 
-getFriends().then(getUsers).then(FriendList)
+  getFriends().then(getUsers).then(FriendList)
 
-// getEvents().then(EventList)
-
-
+  ChatList()
+  // getEvents().then(EventList)
 }
-
