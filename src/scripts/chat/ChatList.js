@@ -54,9 +54,11 @@ eventHub.addEventListener("click", (e) => {
   if (e.target.id === "messageInputBtn") {
     const userId = sessionStorage.activeUser
     const messageText = document.querySelector("#messageInput").value
+    const time = Date.now()
     const newMessage = {
       "userId": parseInt(userId),
       "message": messageText,
+      "postTime": time,
     }
     saveMessage(newMessage)
     ChatList()
