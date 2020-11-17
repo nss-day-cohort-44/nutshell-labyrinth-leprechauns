@@ -15,7 +15,6 @@ export const getMessages = () => {
     .then((response) => response.json())
     .then((parsedMesssages) => {
       messages = parsedMesssages
-      console.log(messages)
     })
 }
 
