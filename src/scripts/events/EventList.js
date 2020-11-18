@@ -74,6 +74,10 @@ eventHub.addEventListener("click", e => {
     if (e.target.id.startsWith("eventWeather")) {
         const [temp, eventId] = e.target.id.split("--");
         const ev = getEventById(parseInt(eventId));
+        const eventDate =ev.eventDate
+        console.log(eventDate)
+        const [x, y, z] = eventDate.split("-")
+        console.log(x)
         eventWeather(ev.eventCity, ev.eventState);
     }
 })

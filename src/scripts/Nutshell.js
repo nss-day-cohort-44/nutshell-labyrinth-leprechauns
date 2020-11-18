@@ -12,6 +12,7 @@ import { displayTaskButton } from "./tasks/TaskButton.js"
 import { TaskFormRender, TaskList } from "./tasks/TaskList.js"
 import { defaultWeather } from "./weather/WeatherSelect.js"
 import "./events/EventForm.js"
+import { displayName } from "./users/UserNameDisplay.js"
 
 const mainBody = document.querySelector(".mainBody")
 
@@ -26,7 +27,7 @@ export const Nutshell = () => {
                         </div>
                         <div class="weatherBox">
                             </div>
-      <h2>---Weather---</h2>
+      
       </div>
   <div class="asideLeft__taskList">
       <h2>---Task List---</h2>
@@ -92,7 +93,8 @@ renderNewsButton()
 newsClickEventHeard()
 NewsList()
 defaultWeather()
-getFriends().then(getUsers).then(FriendList)
+getFriends().then(getUsers).then(FriendList).then(displayName)
 getEvents().then(EventList)
 ChatList();
+
 }
