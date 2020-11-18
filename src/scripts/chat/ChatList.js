@@ -2,7 +2,7 @@
 
 import { getUserByUsername, getUsers, useUsers } from "../users/UserProvider.js"
 import { Message } from "./Message.js"
-import { getMessages, saveMessage, useMessages, deleteMessage } from "./chatProvider.js"
+import { getMessages, saveMessage, useMessages, deleteMessage, getMessageById } from "./chatProvider.js"
 import { renderMessageForm } from "./ChatForm.js"
 import { addFriend } from "../friends/FriendProvider.js"
 import { getUserByUserId } from "../users/UserProvider.js"
@@ -22,9 +22,9 @@ export const ChatList = () => {
       messages = useMessages()
       users = useUsers()
       const filteredMessages = messages.filter(message => {
-        if(message.privateId !== 0) {
-          if(message.privateId === parseInt(sessionStorage.getItem("activeUser")) ||
-          message.userId === parseInt(sessionStorage.getItem("activeUser"))) {
+        if (message.privateId !== 0) {
+          if (message.privateId === parseInt(sessionStorage.getItem("activeUser")) ||
+            message.userId === parseInt(sessionStorage.getItem("activeUser"))) {
             return true;
           }
         } else {
@@ -68,9 +68,9 @@ eventHub.addEventListener("click", (e) => {
     const userId = sessionStorage.activeUser
     const messageText = document.querySelector("#messageInput").value
     let privateId = 0;
-    if(messageText.startsWith("@")) {
+    if (messageText.startsWith("@")) {
       const user = getUserByUsername(messageText.slice(1, messageText.indexOf(" ")))
-      if(user)
+      if (user)
         privateId = user.id;
     }
     const time = Date.now()
@@ -78,12 +78,36 @@ eventHub.addEventListener("click", (e) => {
       "userId": parseInt(userId),
       "message": messageText,
       "postTime": time,
+      "updateTime": time,
       "privateId": privateId
     }
     saveMessage(newMessage)
     ChatList()
   }
+  if (e.target.id.startsWith("editMessage--")) {
+    const [temp, id] = e.target.id.split("--")
+    e.target.parentElement.innerHTML = `<input type="text" value="${getMessageById(id).message}"
+    id="editMessageField--${id}"></input><button id="editMessageButton--${id}" class="btn">Save</button>`
+  }
+
+  if(e.target.id.startsWith("editMessageButton--")) {
+    const [temp, id] = e.target.id.split("--");
+    const field = document.getElementById(`editMessageField--${id}`);
+    const message = getMessageById(id);
+    eventHub.dispatchEvent(new CustomEvent("editMessage", {
+      detail: {
+        userId: parseInt(sessionStorage.getItem("activeUser")),
+        message: field.value,
+        postTime: message.postTime,
+        updateTime: Date.now(),
+        privateId: message.privateId,
+        id: message.id
+      }
+    }))
+  }
 })
+
+
 
 eventHub.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id.startsWith("deleteMessage--")) {

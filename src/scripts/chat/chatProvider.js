@@ -8,12 +8,34 @@ const eventHub = document.querySelector(".container")
 
 // Listen for the storage event that fires every time localStorage is updated. If our local most recent
 // timestamp is lower than the timestamp in localStorage, update our chat list.
-addEventListener("storage", e => {
+eventHub.addEventListener("storage", e => {
   if(useMostRecentChat() < parseInt(localStorage.getItem("mostRecentChatMessage"))) {
     getMessages()
     .then(ChatList)
   }
 })
+
+eventHub.addEventListener("editMessage", e => {
+  console.log("e: ", e)
+  const message = {
+    userId: e.detail.messageId,
+    message: e.detail.message,
+    postTime: e.detail.postTime,
+    updateTime: e.detail.updateTime,
+    privateId: e.detail.privateId,
+    id: e.detail.id
+  }
+
+  editMessage(message)
+})
+
+// {
+//   "userId": 1,
+//   "message": "TEST",
+//   "postTime": 1605734469188,
+//   "privateId": 0,
+//   "id": 1
+// },
 
 const dispatchStateChangeEvent = () => {
   const chatStateChangeEvent = new CustomEvent("chatStateChanged")
@@ -36,11 +58,13 @@ export const getMessages = () => {
     })
 }
 
+export const getMessageById = id => useMessages().find(message => message.id === parseInt(id));
+
 export const saveMessage = (message) => {
   // Update our local most recent time stamp if the new message's timestamp is higher (not guaranteed,
   // because messages are sent asynchronously)
-  if (useMostRecentChat() < message.postTime)
-    setMostRecentChat(message.postTime)
+  if (useMostRecentChat() < message.updateTime)
+    setMostRecentChat(message.updateTime)
   // Compare timestamps to see if we need to update localStorage's timestamp
   if (parseInt(localStorage.getItem("mostRecentChatMessage")) < useMostRecentChat()) {
     localStorage.setItem("mostRecentChatMessage", useMostRecentChat())
@@ -58,6 +82,20 @@ export const saveMessage = (message) => {
   })
     .then(getMessages)
     .then(dispatchStateChangeEvent)
+}
+
+export const editMessage = message => {
+
+  console.log("message: ", message)
+  return fetch(`http://localhost:8088/messages/${message.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(message)
+  })
+  .then(getMessages)
+  .then(ChatList);
 }
 
 export const deleteMessage = (messageId) => {
