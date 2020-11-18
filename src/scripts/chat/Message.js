@@ -24,8 +24,6 @@ const addNameButton = (messageObj, userObj) => {
   })
   // if matching friend is truthy return the mesage with no button, otherwise return the message with a button to add friend
   if (matchingFriend) {
-    console.log("UO", userObj)
-    console.log("MO", messageObj)
     return `<p>${userObj.username}: ${messageObj.message} ${AddDeleteButton(messageObj)}</p>`
   } else {
     return `<p><button  id="addFriendFromMessage--${messageObj.userId}" class="btn"">${

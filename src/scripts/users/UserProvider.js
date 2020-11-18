@@ -14,3 +14,5 @@ export const getUsers = () => {
 
 // Given a user's id, return the user object associated with that id.
 export const getUserByUserId = (id) => users.find(user => user.id === id);
+
+export const getUserByUsername = (name) => users.find(user => user.username === name);
