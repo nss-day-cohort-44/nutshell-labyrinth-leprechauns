@@ -1,6 +1,6 @@
 // Silas-renders the chat input and messages, saves messages to api and rerenders messages to the dom
 
-import { getUsers, useUsers } from "../users/UserProvider.js"
+import { getUserByUsername, getUsers, useUsers } from "../users/UserProvider.js"
 import { Message } from "./Message.js"
 import { getMessages, saveMessage, useMessages, deleteMessage } from "./chatProvider.js"
 import { renderMessageForm } from "./ChatForm.js"
@@ -56,11 +56,18 @@ eventHub.addEventListener("click", (e) => {
   if (e.target.id === "messageInputBtn") {
     const userId = sessionStorage.activeUser
     const messageText = document.querySelector("#messageInput").value
+    let private = 0;
+    if(messageText.startsWith("@")) {
+      const user = getUserByUsername(messageText.slice(1, messageText.indexOf(" ")))
+      if(user)
+        private = user.id;
+    }
     const time = Date.now()
     const newMessage = {
       "userId": parseInt(userId),
       "message": messageText,
       "postTime": time,
+      "privateId": private
     }
     saveMessage(newMessage)
     ChatList()
