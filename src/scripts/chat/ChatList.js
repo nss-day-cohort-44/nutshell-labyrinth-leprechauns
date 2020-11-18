@@ -5,6 +5,7 @@ import { Message } from "./Message.js"
 import { getMessages, saveMessage, useMessages, deleteMessage } from "./chatProvider.js"
 import { renderMessageForm } from "./ChatForm.js"
 import { addFriend } from "../friends/FriendProvider.js"
+import { getUserByUserId } from "../users/UserProvider.js"
 
 const eventHub = document.querySelector(".container")
 
@@ -37,13 +38,13 @@ const render = (messagesArr, userArr, target) => {
 <h4>Chats</h4>
 <div class="asideRight__chat__output">
 ${messagesArr
-  .map((message) => {
-    const messageAuthor = userArr.find((user) => {
-      return user.id === message.userId
-    })
-    return Message(messageAuthor, message)
-  })
-  .join("")}
+      .map((message) => {
+        const messageAuthor = userArr.find((user) => {
+          return user.id === message.userId
+        })
+        return Message(messageAuthor, message)
+      })
+      .join("")}
   </div>
   <div class="asideRight__chat__input">
  </div>
@@ -80,13 +81,15 @@ eventHub.addEventListener("click", (clickEvent) => {
 eventHub.addEventListener("click", (e) => {
   if (e.target.id.startsWith("addFriendFromMessage")) {
     const [temp, friendId] = e.target.id.split("--")
-    const addFriend = new CustomEvent("addFriendEvent", {
-      detail: {
-        userId: parseInt(sessionStorage.getItem("activeUser")),
-        friendId: parseInt(friendId),
-      },
-    })
-    eventHub.dispatchEvent(addFriend)
+    if (window.confirm(`Do you really want to add ${getUserByUserId(parseInt(friendId)).username} to your friends?`)) {
+      const addFriend = new CustomEvent("addFriendEvent", {
+        detail: {
+          userId: parseInt(sessionStorage.getItem("activeUser")),
+          friendId: parseInt(friendId),
+        },
+      })
+      eventHub.dispatchEvent(addFriend)
+    }
   }
 })
 
