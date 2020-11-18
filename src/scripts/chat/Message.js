@@ -22,7 +22,7 @@ const addNameButton = (messageObj, userObj) => {
   const matchingFriend = relatedFriends.find((friend) => {
     return friend.followingId === messageObj.userId
   })
-
+  // if matching friend is truthy return the mesage with no button, otherwise return the message with a button to add friend
   if (matchingFriend) {
     console.log("UO", userObj)
     console.log("MO", messageObj)

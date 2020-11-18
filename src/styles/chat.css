@@ -20,3 +20,7 @@
   cursor: pointer;
   display: inline-block;
 }
+
+.btn:hover {
+  color: red;
+}
