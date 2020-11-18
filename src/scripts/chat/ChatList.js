@@ -37,7 +37,6 @@ const render = (messagesArr, userArr, target) => {
 <div class="asideRight__chat__output">
 ${messagesArr
   .map((message) => {
-    console.log(message)
     const messageAuthor = userArr.find((user) => {
       return user.id === message.userId
     })
@@ -77,18 +76,18 @@ eventHub.addEventListener("click", (clickEvent) => {
   }
 })
 
-eventHub.addEventListener("click", e => {
-  if(e.target.id.startsWith("addFriendFromMessage")) {
-    const [temp, friendId] = e.target.id.split("--");
+eventHub.addEventListener("click", (e) => {
+  if (e.target.id.startsWith("addFriendFromMessage")) {
+    const [temp, friendId] = e.target.id.split("--")
     const addFriend = new CustomEvent("addFriendEvent", {
       detail: {
         userId: parseInt(sessionStorage.getItem("activeUser")),
-        friendId: parseInt(friendId)
-      }
-    });
-    eventHub.dispatchEvent(addFriend);
+        friendId: parseInt(friendId),
+      },
+    })
+    eventHub.dispatchEvent(addFriend)
   }
-});
+})
 
 eventHub.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id.startsWith("deleteEntry--")) {
