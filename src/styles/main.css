@@ -87,6 +87,7 @@ min-width:723.84px;
   border-right: 2px solid black;
   padding: 10px;
   max-width: 350px;
+  width: 50%;
 }
 
 .eventWeather {
@@ -100,9 +101,7 @@ min-width:723.84px;
   margin-top: 10px;
 }
 
-.eventCard {
-  min-width: 375px;
-}
+
 
 .newsFeed {
   margin-top: 10px;
@@ -169,4 +168,6 @@ min-width:723.84px;
   display: flex;
   flex-direction: column;
   border: 2px solid black;
+  text-align: center;
+  
 }
