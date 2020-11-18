@@ -15,6 +15,10 @@ header {
   display: flex;
 }
 
+.eventCardFriend {
+    background-color: cornsilk;
+}
+
 .asideLeft {
   display: flex;
   flex-direction: column;
