@@ -1,3 +1,5 @@
+// authored by kyle simmons. this module is responsible for rendering the post news article button
+
 const eventHub = document.querySelector(".container")
 // rendering button to the correct content Target
 export const renderNewsButton = () =>{

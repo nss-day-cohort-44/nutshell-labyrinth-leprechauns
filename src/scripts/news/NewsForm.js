@@ -1,6 +1,9 @@
+// authored by kyle simmons. this module renders the news form
+
 import { saveNews } from "./NewsDataProvider.js"
 
 const eventHub = document.querySelector(".container")
+// event to hear click from the post news article button. responds by rendering the html for the button
 export const newsClickEventHeard = () =>{
     
     eventHub.addEventListener("postArticleButtonClicked", event =>{
@@ -19,7 +22,7 @@ export const newsClickEventHeard = () =>{
         `
     })
 }
-
+// sends object to the api based off of the filled in form components
 eventHub.addEventListener("click", clickEvent =>{
     const contentTarget = document.querySelector("#createForm")
     const id = document.querySelector("#articleId")

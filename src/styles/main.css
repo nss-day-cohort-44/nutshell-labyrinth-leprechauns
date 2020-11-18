@@ -150,3 +150,8 @@ header {
     flex-direction: column;
     text-align: center;
 }
+
+.friendsPost{
+  background-color: cornsilk;
+  font-style: italic;
+}
