@@ -1,9 +1,13 @@
 import { ChatList } from "./ChatList.js"
 let messages = []
+
+// A local copy of the timestamp of the most recent chat message
 let mostRecentChat = 0;
 
 const eventHub = document.querySelector(".container")
 
+// Listen for the storage event that fires every time localStorage is updated. If our local most recent
+// timestamp is lower than the timestamp in localStorage, update our chat list.
 addEventListener("storage", e => {
   if(useMostRecentChat() < parseInt(localStorage.getItem("mostRecentChatMessage"))) {
     getMessages()
@@ -33,14 +37,15 @@ export const getMessages = () => {
 }
 
 export const saveMessage = (message) => {
+  // Update our local most recent time stamp if the new message's timestamp is higher (not guaranteed,
+  // because messages are sent asynchronously)
   if (useMostRecentChat() < message.postTime)
     setMostRecentChat(message.postTime)
-
+  // Compare timestamps to see if we need to update localStorage's timestamp
   if (parseInt(localStorage.getItem("mostRecentChatMessage")) < useMostRecentChat()) {
-    console.log("most recent: ", useMostRecentChat())
     localStorage.setItem("mostRecentChatMessage", useMostRecentChat())
   }
-
+  // If localStorage does not have a timestamp at all, add one.
   if(!localStorage.getItem("mostRecentChatMessage"))
   localStorage.setItem("mostRecentChatMessage", useMostRecentChat())
 
