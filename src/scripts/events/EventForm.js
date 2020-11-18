@@ -29,8 +29,7 @@ eventHub.addEventListener("click", e => {
             eventName: document.querySelector("#createForm__eventName").value,
             eventCity: document.querySelector("#createForm__eventCity").value,
             eventState: document.querySelector("#createForm__eventState").value,
-            //userId: sessionStorage.getItem("activeUser")
-            userId: 1
+            userId: sessionStorage.getItem("activeUser")
         }
         // If one of the fields is empty, display an error and halt function execution.
         if(!detail.eventDate || !detail.eventName || !detail.eventCity || !detail.eventState) {
