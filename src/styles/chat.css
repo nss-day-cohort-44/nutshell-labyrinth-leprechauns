@@ -15,7 +15,7 @@
 .btn {
   border: none;
   background-color: inherit;
-  padding: 14px 28px;
+  padding: 0;
   font-size: 16px;
   cursor: pointer;
   display: inline-block;
