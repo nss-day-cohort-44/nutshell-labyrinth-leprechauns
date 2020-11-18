@@ -160,3 +160,13 @@ min-width:723.84px;
   background-color: cornsilk;
   font-style: italic;
 }
+
+.nonOffensive{
+  background-color: paleturquoise;
+}
+
+.eventCard, .eventCardFriend{
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+}

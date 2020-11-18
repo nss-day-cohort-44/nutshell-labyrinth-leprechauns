@@ -4,14 +4,14 @@
 
 export const EventCard = ev => {
     if(ev.userId === parseInt(sessionStorage.getItem('activeUser')))
-        return `<div class="eventCard">${ev.name} ${ev.eventCity}, ${ev.eventState} ${ev.eventDate}</div>`
+        return `<div class="eventCard"><p>${ev.name}</p> <p>${ev.eventCity}, ${ev.eventState}</p> <p>${ev.eventDate}</p></div>`
     else
-        return `<div class="eventCardFriend">${ev.name} ${ev.eventCity}, ${ev.eventState} ${ev.eventDate}</div>`
+        return `<div class="eventCardFriend"><p>${ev.name}</p> <p>${ev.eventCity}, ${ev.eventState}</p> <p>${ev.eventDate}</p></div>`
 }
 
 export const EventCardFirst = ev => {
     if(ev.userId === parseInt(sessionStorage.getItem('activeUser')))
-        return `<div class="eventCard"><b>${ev.name} ${ev.eventCity}, ${ev.eventState} ${ev.eventDate}</b></div>`
+        return `<div class="eventCard nonOffensive"><p><b>${ev.name}</p> <p>${ev.eventCity}, ${ev.eventState}</p> <p>${ev.eventDate}</p></b></div>`
     else
-        return `<div class="eventCardFriend"><b>${ev.name} ${ev.eventCity}, ${ev.eventState} ${ev.eventDate}</b></div>`
+        return `<div class="eventCardFriend nonOffensive"><p><b>${ev.name}</p> <p>${ev.eventCity}, ${ev.eventState}</p> <p>${ev.eventDate}</p></b></div>`
 }
