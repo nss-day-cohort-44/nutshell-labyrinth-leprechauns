@@ -30,6 +30,10 @@ eventHub.addEventListener("click", clickEvent => {
             date,
             completed: false
         }
+        if(!task || !date) {
+            window.alert("Fill out the form please")
+            return 
+        }
         saveTaskList(NewTask)
         console.log(NewTask)
     }
