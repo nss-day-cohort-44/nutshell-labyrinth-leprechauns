@@ -66,8 +66,14 @@ export const defaultWeather = () => {
     })
     }
 // same thing just passing in a city and state
-export const eventWeather = (city, state) => {
+export const eventWeather = (city, state, date) => {
     getGeocode(city, state).then(() => {
+        if(!date)
+            date = 0;
+        if(date > 7)
+            date = 0;
+
+        console.log(date)
         const locationArray = useGeocode()
         const locationLat = locationArray[0].point.lat
         const locationLng = locationArray[0].point.lng
@@ -75,11 +81,9 @@ export const eventWeather = (city, state) => {
             const htmlTarget = document.querySelector(".weatherBox")
             const nashWeather = useWeather()
             const h4Target = document.querySelector(".h4Nashville")
-            const fiveDayWeather = nashWeather.daily.slice(0, 5)
+            const fiveDayWeather = nashWeather.daily.slice(0, 8)
             let weatherArr = [];
-            for( let i = 0; i < 1; i++ ) {
-                weatherArr.push(fiveDayWeather[i]);
-            }
+            weatherArr.push(fiveDayWeather[date])
             const weatherHTML = weatherArr.map(day => {
                 const datept1 = day.dt * 1000
                 const humanDate = new Date(datept1)
