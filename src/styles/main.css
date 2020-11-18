@@ -15,6 +15,7 @@ header {
 
 .mainBody {
   display: flex;
+  justify-content: space-evenly;
 }
 
 .eventCardFriend {
@@ -25,6 +26,8 @@ header {
   display: flex;
   flex-direction: column;
   min-width: 325px;
+  
+  /* justify-content: center; */
 }
 
 .centerBody {
@@ -76,13 +79,15 @@ header {
 .centerBody__mainFeed {
   display: flex;
   max-width: 750px;
-  padding: 10px;
+min-width:723.84px;
   min-height: 500px;
 }
 
 .centerBody__eventFeed {
   border-right: 2px solid black;
   padding: 10px;
+  max-width: 350px;
+  width: 50%;
 }
 
 .eventWeather {
@@ -96,9 +101,7 @@ header {
   margin-top: 10px;
 }
 
-.eventCard {
-  min-width: 375px;
-}
+
 
 .newsFeed {
   margin-top: 10px;
@@ -133,10 +136,11 @@ header {
 }
 
 .centerBody__newsFeed{
-    min-width: 325px;
+    min-width: 350px;
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
+    padding: 10px;
 }
 
 .delete{
@@ -154,4 +158,16 @@ header {
 .friendsPost{
   background-color: cornsilk;
   font-style: italic;
+}
+
+.nonOffensive{
+  background-color: paleturquoise;
+}
+
+.eventCard, .eventCardFriend{
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  text-align: center;
+  
 }

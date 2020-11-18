@@ -5,6 +5,7 @@ import { Message } from "./Message.js"
 import { getMessages, saveMessage, useMessages, deleteMessage } from "./chatProvider.js"
 import { renderMessageForm } from "./ChatForm.js"
 import { addFriend } from "../friends/FriendProvider.js"
+import { getUserByUserId } from "../users/UserProvider.js"
 
 const eventHub = document.querySelector(".container")
 
@@ -92,6 +93,19 @@ eventHub.addEventListener("click", (e) => {
     })
     ChatList()
     eventHub.dispatchEvent(addFriend)
+    if (
+      window.confirm(
+        `Do you really want to add ${getUserByUserId(parseInt(friendId)).username} to your friends?`
+      )
+    ) {
+      const addFriend = new CustomEvent("addFriendEvent", {
+        detail: {
+          userId: parseInt(sessionStorage.getItem("activeUser")),
+          friendId: parseInt(friendId),
+        },
+      })
+      eventHub.dispatchEvent(addFriend)
+    }
   }
 })
 
