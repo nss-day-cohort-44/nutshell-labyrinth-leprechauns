@@ -8,6 +8,10 @@ eventHub.addEventListener("userAuthenticated", (e) => {
   Nutshell()
 })
 
+eventHub.addEventListener("storage", e => {
+  console.log(e);
+})
+
 eventHub.addEventListener("click", (e) => {
   if (e.target.id === "login__button") {
     const username = document.querySelector("#login__username").value

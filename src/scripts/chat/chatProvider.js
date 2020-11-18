@@ -1,4 +1,5 @@
 let messages = []
+let mostRecentChat = 0;
 const eventHub = document.querySelector(".container")
 
 const dispatchStateChangeEvent = () => {
