@@ -1,6 +1,6 @@
 // Silas, generates the messages in the caht window
 
-import { getFriends, useFriends } from "../friends/FriendProvider.js"
+import { useFriends } from "../friends/FriendProvider.js"
 
 export const Message = (userObj, messageObj) => {
   return addNameButton(messageObj, userObj)
@@ -8,7 +8,7 @@ export const Message = (userObj, messageObj) => {
 const AddDeleteButton = (messageObj) => {
   // Only add a delete button if the active user created this event.
   if (messageObj.userId === +sessionStorage.getItem("activeUser"))
-    return `<button id="deleteMessage--${messageObj.id}" class="btn">Delete</button>`
+    return `<button id="deleteMessage--${messageObj.id}" class="btn delete-btn">Delete</button>`
   else return ``
 }
 
