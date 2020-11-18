@@ -15,18 +15,15 @@ export const EventList = () => {
 
     const evArray = getEventsArrayByUser(user);
     evArray.sort((evOne, evTwo) => {
-        const [yearOne, dayOne, monthOne] = evOne.eventDate.split("-")
-        const [yearTwo, dayTwo, monthTwo] = evTwo.eventDate.split("-")
-        return (parseInt(yearOne) + parseInt(dayOne) + parseInt(monthOne)) -
-            (parseInt(yearTwo) + parseInt(dayTwo) + parseInt(monthTwo));
-    })
+        const first = Date.parse(evOne.eventDate);
+        const second = Date.parse(evTwo.eventDate);
+        return first - second;
+    });
 
-    const [month, date, year] = new Date().toLocaleDateString("en-US").split("/")
     evArray.forEach(ev => {
-        const [evYear, evDay, evMonth] = ev.eventDate.split("-")
+        const date = Date.parse(ev.eventDate);
 
-        if ((parseInt(evYear) + parseInt(evDay) + parseInt(evMonth)) <
-            (parseInt(month) + parseInt(date) + parseInt(year))) {
+        if (date < (Date.now() - (1000 * 60 * 60 * 24))) {
             eventHub.dispatchEvent(new CustomEvent("deleteEventEvent", {
                 detail: {
                     eventId: ev.id
@@ -60,13 +57,13 @@ const AddDeleteButton = ev => {
 
 const AddWeatherButton = ev => {
     const eventDates = Date.parse(ev.eventDate)
-        const todayDate= Date.now()
-        const difference = (eventDates - todayDate) / (1000 * 60 * 60 * 24)
-        if (difference < 7){
-    return `<button id="eventWeather--${ev.id}">Show Weather</button>`;
-        }else {
-            return ""
-        }
+    const todayDate = Date.now()
+    const difference = (eventDates - todayDate) / (1000 * 60 * 60 * 24)
+    if (difference < 7) {
+        return `<button id="eventWeather--${ev.id}">Show Weather</button>`;
+    } else {
+        return ""
+    }
 }
 
 eventHub.addEventListener("click", e => {
@@ -82,7 +79,7 @@ eventHub.addEventListener("click", e => {
         const [temp, eventId] = e.target.id.split("--");
         const ev = getEventById(parseInt(eventId));
         const eventDates = Date.parse(ev.eventDate)
-        const todayDate= Date.now()
+        const todayDate = Date.now()
         const difference = (eventDates - todayDate) / (1000 * 60 * 60 * 24)
         console.log(eventDates)
         console.log(todayDate)
@@ -92,6 +89,6 @@ eventHub.addEventListener("click", e => {
             eventWeather(ev.eventCity, ev.eventState, Math.ceil(difference));
         }
 
-        
+
     }
 })
