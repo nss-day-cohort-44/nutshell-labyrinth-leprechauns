@@ -11,6 +11,7 @@ export const defaultWeather = () => {
             const nashWeather = useWeather()
             const h4Target = document.querySelector(".h4Nashville")
             const fiveDayWeather = nashWeather.daily.slice(0, 5)
+            
             let weatherArr = [];
             for( let i = 0; i < 1; i++ ) {
                 weatherArr.push(fiveDayWeather[i]);
@@ -23,6 +24,8 @@ export const defaultWeather = () => {
                     day: "numeric",
                     year: "numeric"
                 })
+                console.log(humanDate)
+                console.log(condensedDate)
                 const high = Math.floor(day.temp.max)
                 const low = Math.floor(day.temp.min)
                 const precip = day.weather[0].description
@@ -66,7 +69,9 @@ export const eventWeather = (city, state) => {
                     month: "numeric",
                     day: "numeric",
                     year: "numeric"
+                
                 })
+                
                 const high = Math.floor(day.temp.max)
                 const low = Math.floor(day.temp.min)
                 const precip = day.weather[0].description
