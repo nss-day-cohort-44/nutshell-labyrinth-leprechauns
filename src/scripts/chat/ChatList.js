@@ -30,6 +30,10 @@ eventHub.addEventListener("chatStateChanged", (event) => {
   ChatList()
 })
 
+eventHub.addEventListener("friendListStateChanged", (event) => {
+  ChatList()
+})
+
 // MAps over the messages and uses find to create a user obj that corrosponds with the userId in the message. Then runs the message and user objects through the Message() to render the info to the DOM element
 
 const render = (messagesArr, userArr, target) => {
@@ -86,6 +90,7 @@ eventHub.addEventListener("click", (e) => {
         friendId: parseInt(friendId),
       },
     })
+    ChatList()
     eventHub.dispatchEvent(addFriend)
   }
 })
