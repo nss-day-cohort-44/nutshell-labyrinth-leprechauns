@@ -19,7 +19,7 @@ export const newsArticleCard = (article) => {
         `
     } else {
         return  `
-        <section id="article--${article.id}"  class="articleCard " value="${article.id}">
+        <section id="article--${article.id}"  class="articleCard friendsPost" value="${article.id}">
         <h4>${article.titleOfArticle}<h4>
         <p>About: ${article.synopsisOfArticle}</p>
         <p>Url: <a href="${article.urlOfArticle}" target="_blank">${article.titleOfArticle}</a></p>
@@ -41,10 +41,3 @@ const renderDeleteButton = (article) =>{
         return ``
     }
 }
-
-// export const EventCard = ev => {
-//     if(ev.userId === parseInt(sessionStorage.getItem('activeUser')))
-//         return `<div class="eventCard">${ev.name} ${ev.eventCity}, ${ev.eventState} ${ev.eventDate}</div>`
-//     else
-//         return `<div class="eventCardFriend">${ev.name} ${ev.eventCity}, ${ev.eventState} ${ev.eventDate}</div>`
-// }
