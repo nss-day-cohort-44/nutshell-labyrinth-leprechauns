@@ -35,6 +35,7 @@ header {
   flex-direction: column;
   border-left: 2px solid red;
   border-right: 2px solid red;
+  width: 60%;
 }
 
 .asideRight {
@@ -79,8 +80,9 @@ header {
 .centerBody__mainFeed {
   display: flex;
   max-width: 750px;
-min-width:723.84px;
+/* min-width:723.84px; */
   min-height: 500px;
+  
 }
 
 .centerBody__eventFeed {
@@ -136,7 +138,7 @@ min-width:723.84px;
 }
 
 .centerBody__newsFeed{
-    min-width: 350px;
+    /* min-width: 350px; */
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
@@ -170,4 +172,8 @@ min-width:723.84px;
   border: 2px solid black;
   text-align: center;
   
+}
+
+.eventCardFriend{
+  font-style: italic;
 }
