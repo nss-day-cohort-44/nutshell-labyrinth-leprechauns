@@ -59,7 +59,14 @@ const AddDeleteButton = ev => {
 }
 
 const AddWeatherButton = ev => {
+    const eventDates = Date.parse(ev.eventDate)
+        const todayDate= Date.now()
+        const difference = (eventDates - todayDate) / (1000 * 60 * 60 * 24)
+        if (difference < 7){
     return `<button id="eventWeather--${ev.id}">Show Weather</button>`;
+        }else {
+            return ""
+        }
 }
 
 eventHub.addEventListener("click", e => {
@@ -80,6 +87,11 @@ eventHub.addEventListener("click", e => {
         console.log(eventDates)
         console.log(todayDate)
         console.log(difference)
-        eventWeather(ev.eventCity, ev.eventState);
+        if (difference < 7) {
+
+            eventWeather(ev.eventCity, ev.eventState, Math.ceil(difference));
+        }
+
+        
     }
 })
