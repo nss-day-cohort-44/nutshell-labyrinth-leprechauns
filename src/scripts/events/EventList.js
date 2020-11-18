@@ -1,4 +1,4 @@
-/*  Author: Devin Kent
+/*  Author: Devin Kent, TRAVIS MILNER
     Purpose: Draw the list of events.
 */
 
@@ -59,7 +59,14 @@ const AddDeleteButton = ev => {
 }
 
 const AddWeatherButton = ev => {
+    const eventDates = Date.parse(ev.eventDate)
+        const todayDate= Date.now()
+        const difference = (eventDates - todayDate) / (1000 * 60 * 60 * 24)
+        if (difference < 7){
     return `<button id="eventWeather--${ev.id}">Show Weather</button>`;
+        }else {
+            return ""
+        }
 }
 
 eventHub.addEventListener("click", e => {
@@ -74,10 +81,17 @@ eventHub.addEventListener("click", e => {
     if (e.target.id.startsWith("eventWeather")) {
         const [temp, eventId] = e.target.id.split("--");
         const ev = getEventById(parseInt(eventId));
-        const eventDate =ev.eventDate
-        console.log(eventDate)
-        const [x, y, z] = eventDate.split("-")
-        console.log(x)
-        eventWeather(ev.eventCity, ev.eventState);
+        const eventDates = Date.parse(ev.eventDate)
+        const todayDate= Date.now()
+        const difference = (eventDates - todayDate) / (1000 * 60 * 60 * 24)
+        console.log(eventDates)
+        console.log(todayDate)
+        console.log(difference)
+        if (difference < 7) {
+
+            eventWeather(ev.eventCity, ev.eventState, Math.ceil(difference));
+        }
+
+        
     }
 })

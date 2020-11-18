@@ -91,7 +91,9 @@ export const eventWeather = (city, state, date) => {
                     month: "numeric",
                     day: "numeric",
                     year: "numeric"
+                
                 })
+                
                 const high = Math.floor(day.temp.max)
                 const low = Math.floor(day.temp.min)
                 const precip = day.weather[0].description
