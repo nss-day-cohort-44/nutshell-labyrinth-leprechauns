@@ -22,11 +22,7 @@ export const defaultWeather = () => {
             const h4Target = document.querySelector(".h4Nashville")
             // 5 day weather array
             const fiveDayWeather = nashWeather.daily.slice(0, 5)
-<<<<<<< HEAD
-            
-=======
             // setting only one day to return
->>>>>>> master
             let weatherArr = [];
             for( let i = 0; i < 1; i++ ) {
                 weatherArr.push(fiveDayWeather[i]);
@@ -43,12 +39,7 @@ export const defaultWeather = () => {
                     day: "numeric",
                     year: "numeric"
                 })
-<<<<<<< HEAD
-                console.log(humanDate)
-                console.log(condensedDate)
-=======
                 // variable for the high for that day
->>>>>>> master
                 const high = Math.floor(day.temp.max)
                 // variable for the low for that day
                 const low = Math.floor(day.temp.min)

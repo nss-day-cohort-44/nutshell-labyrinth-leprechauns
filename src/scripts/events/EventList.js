@@ -1,4 +1,4 @@
-/*  Author: Devin Kent
+/*  Author: Devin Kent, TRAVIS MILNER
     Purpose: Draw the list of events.
 */
 
