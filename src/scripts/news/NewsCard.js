@@ -1,3 +1,7 @@
+// authored by kyle simmons. this module is the html component for the news cards
+
+// a function that renders the individual news article cards once an object is passed in
+
 export const newsArticleCard = (article) => {
     return `
         <section id="article--${article.id}"  class="articleCard" value="${article.id}">
@@ -13,8 +17,8 @@ export const newsArticleCard = (article) => {
     `
 }
 
-{/* <p>Posted by: ${article.user.userName}</p>  will be added when everthing is compiled properly*/}
 
+// a function that checks if the current user is the one who posted an article. if so then add a delete button to the card
 const renderDeleteButton = (article) =>{
     if (article.userId === +sessionStorage.getItem("activeUser")){
         return ` <button class="deleteButton" id="deleteArticle--${article.id}">Delete</button>`
