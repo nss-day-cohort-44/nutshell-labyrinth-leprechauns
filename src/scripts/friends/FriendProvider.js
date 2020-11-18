@@ -20,6 +20,7 @@ export const getFriends = () => {
 const dispatchStateChange = () => {
     eventHub.dispatchEvent(new CustomEvent("friendListStateChanged"));
     eventHub.dispatchEvent(new CustomEvent("eventListStateChanged"));
+    eventHub.dispatchEvent(new CustomEvent("chatListStateChanged"));
 }
 
 // Returns an array of all friends of a particular user. Requires either a user id or a user object.
