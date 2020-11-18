@@ -20,7 +20,17 @@ export const ChatList = () => {
     .then(() => {
       messages = useMessages()
       users = useUsers()
-      render(messages, users, messagesTarget)
+      const filteredMessages = messages.filter(message => {
+        if(message.privateId !== 0) {
+          if(message.privateId === parseInt(sessionStorage.getItem("activeUser")) ||
+          message.userId === parseInt(sessionStorage.getItem("activeUser"))) {
+            return true;
+          }
+        } else {
+          return true;
+        }
+      })
+      render(filteredMessages, users, messagesTarget)
       const messagesInputTarget = document.querySelector(".asideRight__chat__input")
       renderMessageForm(messagesInputTarget)
     })
@@ -56,18 +66,18 @@ eventHub.addEventListener("click", (e) => {
   if (e.target.id === "messageInputBtn") {
     const userId = sessionStorage.activeUser
     const messageText = document.querySelector("#messageInput").value
-    let private = 0;
+    let privateId = 0;
     if(messageText.startsWith("@")) {
       const user = getUserByUsername(messageText.slice(1, messageText.indexOf(" ")))
       if(user)
-        private = user.id;
+        privateId = user.id;
     }
     const time = Date.now()
     const newMessage = {
       "userId": parseInt(userId),
       "message": messageText,
       "postTime": time,
-      "privateId": private
+      "privateId": privateId
     }
     saveMessage(newMessage)
     ChatList()
