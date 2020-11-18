@@ -12,6 +12,7 @@ let messages = []
 let users = []
 
 // Gets the users and messages arrays from api, then parsed the array into json and puts in variable. Uses the variables to render the HTML
+
 export const ChatList = () => {
   const messagesTarget = document.querySelector(".asideRight__chat")
   return getMessages()
@@ -49,7 +50,7 @@ ${messagesArr
  `
 }
 
-// On post byn click the entry is saved to api and the chat is rerendered with a fresh input and updated messages
+// On post btn click the entry is saved to api and the chat is rerendered with a fresh input and updated messages
 
 eventHub.addEventListener("click", (e) => {
   if (e.target.id === "messageInputBtn") {
