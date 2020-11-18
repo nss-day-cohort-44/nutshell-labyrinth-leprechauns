@@ -74,6 +74,12 @@ eventHub.addEventListener("click", e => {
     if (e.target.id.startsWith("eventWeather")) {
         const [temp, eventId] = e.target.id.split("--");
         const ev = getEventById(parseInt(eventId));
+        const eventDates = Date.parse(ev.eventDate)
+        const todayDate= Date.now()
+        const difference = (eventDates - todayDate) / (1000 * 60 * 60 * 24)
+        console.log(eventDates)
+        console.log(todayDate)
+        console.log(difference)
         eventWeather(ev.eventCity, ev.eventState);
     }
 })
