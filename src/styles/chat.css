@@ -24,3 +24,7 @@
 .btn:hover {
   color: red;
 }
+
+.delete-btn {
+  text-decoration: underline;
+}
