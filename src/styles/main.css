@@ -15,6 +15,7 @@ header {
 
 .mainBody {
   display: flex;
+  justify-content: center;
 }
 
 .eventCardFriend {
@@ -25,6 +26,8 @@ header {
   display: flex;
   flex-direction: column;
   min-width: 325px;
+  
+  /* justify-content: center; */
 }
 
 .centerBody {

@@ -31,8 +31,7 @@ export const Nutshell = () => {
   <div class="asideLeft__taskList">
       <h2>---Task List---</h2>
      </div>
-  <div class="asideLeft__eventList">
-      <h2>---Event List---</h2>
+  
 </aside>
 <article class="centerBody">
   <div class="centerBody__create">
