@@ -30,7 +30,7 @@ eventHub.addEventListener("click", clickEvent =>{
         const titleOfArticle = document.querySelector("#titleOfArticle").value
             const synopsisOfArticle = document.querySelector("#aboutArticle").value
             const urlOfArticle = document.querySelector("#articleUrl").value
-        if(id.value === "" && titleOfArticle !== "" || synopsisOfArticle !== "" || urlOfArticle !== ""){ 
+        if(id.value === "" && titleOfArticle !== "" && synopsisOfArticle !== "" && urlOfArticle !== ""){ 
         const timeOfArticlePost = Date.now()
         const titleOfArticle = document.querySelector("#titleOfArticle").value
         const synopsisOfArticle = document.querySelector("#aboutArticle").value
