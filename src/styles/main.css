@@ -200,7 +200,7 @@ header {
   flex-direction: column;
   border: 2px solid black;
   text-align: center;
-  margin: 1%;
+  margin: 2%;
   border-radius: 2%;
 }
 
@@ -310,4 +310,16 @@ bottom: 25%;
 .weatherIcon{
   background-color: dimgray;
   border-radius: 50%;
+}
+
+.eventButtons{
+  display: flex;
+  justify-content: space-between;
+  margin: 2%;
+}
+
+.eventWeatherButtonDiv{
+  display: flex;
+  justify-content: center;
+  margin: 2%;
 }
