@@ -2,93 +2,85 @@
     Purpose: Draw the list of events.
 */
 
-import { getEventsArrayByUser, getEvents, getEventById } from "./EventProvider.js";
-import { EventCard, EventCardFirst } from "./Event.js";
-import { eventWeather } from "../weather/WeatherSelect.js";
+import { getEventsArrayByUser, getEvents, getEventById } from "./EventProvider.js"
+import { EventCard, EventCardFirst } from "./Event.js"
+import { eventWeather } from "../weather/WeatherSelect.js"
 
-
-const eventHub = document.querySelector(".container");
+const eventHub = document.querySelector(".container")
 
 export const EventList = () => {
-    const contentTarget = document.querySelector(".eventFeed");
-    const user = parseInt(sessionStorage.getItem("activeUser"));
+  const contentTarget = document.querySelector(".eventFeed")
+  const user = parseInt(sessionStorage.getItem("activeUser"))
 
-    const evArray = getEventsArrayByUser(user);
-    evArray.sort((evOne, evTwo) => {
-        const first = Date.parse(evOne.eventDate);
-        const second = Date.parse(evTwo.eventDate);
-        return first - second;
-    });
+  const evArray = getEventsArrayByUser(user)
+  evArray.sort((evOne, evTwo) => {
+    const first = Date.parse(evOne.eventDate)
+    const second = Date.parse(evTwo.eventDate)
+    return first - second
+  })
 
-    evArray.forEach(ev => {
-        const date = Date.parse(ev.eventDate);
+  evArray.forEach((ev) => {
+    const date = Date.parse(ev.eventDate)
 
-        if (date < (Date.now() - (1000 * 60 * 60 * 24))) {
-            eventHub.dispatchEvent(new CustomEvent("deleteEventEvent", {
-                detail: {
-                    eventId: ev.id
-                }
-            }));
-        }
+    if (date < Date.now() - 1000 * 60 * 60 * 24) {
+      eventHub.dispatchEvent(
+        new CustomEvent("deleteEventEvent", {
+          detail: {
+            eventId: ev.id,
+          },
+        })
+      )
+    }
+  })
+
+  let htmlRep = "<h2>Event List</h2>"
+  htmlRep += evArray
+    .map((ev, i) => {
+      if (i === 0) return `${EventCardFirst(ev)}`
+      else return `${EventCard(ev)}`
     })
-
-    let htmlRep = "<h2>Event List</h2>"
-    htmlRep += evArray.map((ev, i) => {
-        if (i === 0)
-            return `${EventCardFirst(ev)}${AddDeleteButton(ev)}${AddWeatherButton(ev)}`
-        else
-            return `${EventCard(ev)}${AddDeleteButton(ev)}${AddWeatherButton(ev)}`
-    }).join("");
-    contentTarget.innerHTML = htmlRep;
+    .join("")
+  contentTarget.innerHTML = htmlRep
 }
 
-eventHub.addEventListener("eventListStateChanged", e => {
-    getEvents()
-        .then(EventList);
+// This might should stay but it werks with out it.
+
+// let htmlRep = "<h2>Event List</h2>"
+// htmlRep += evArray
+//   .map((ev, i) => {
+//     if (i === 0) return `${EventCardFirst(ev)}${AddDeleteButton(ev)}${AddWeatherButton(ev)}`
+//     else return `${EventCard(ev)}${AddDeleteButton(ev)}${AddWeatherButton(ev)}`
+//   })
+//   .join("")
+// contentTarget.innerHTML = htmlRep
+// }
+
+eventHub.addEventListener("eventListStateChanged", (e) => {
+  getEvents().then(EventList)
 })
 
-const AddDeleteButton = ev => {
-    // Only add a delete button if the active user created this event.
-    if (ev.userId === +sessionStorage.getItem("activeUser"))
-        return `<button id="deleteEvent--${ev.id}">Delete</button>`;
-    else
-        return ``;
-}
-
-const AddWeatherButton = ev => {
+eventHub.addEventListener("click", (e) => {
+  if (e.target.id.startsWith("deleteEvent")) {
+    const [temp, eventId] = e.target.id.split("--")
+    eventHub.dispatchEvent(
+      new CustomEvent("deleteEventEvent", {
+        detail: {
+          eventId,
+        },
+      })
+    )
+  }
+  if (e.target.id.startsWith("eventWeather")) {
+    const [temp, eventId] = e.target.id.split("--")
+    const ev = getEventById(parseInt(eventId))
     const eventDates = Date.parse(ev.eventDate)
     const todayDate = Date.now()
     const difference = (eventDates - todayDate) / (1000 * 60 * 60 * 24)
+    console.log(eventDates)
+    console.log(todayDate)
+    console.log(difference)
     if (difference < 7) {
-        return `<button id="eventWeather--${ev.id}">Show Weather</button>`;
-    } else {
-        return ""
+      eventWeather(ev.eventCity, ev.eventState, Math.ceil(difference))
     }
-}
-
-eventHub.addEventListener("click", e => {
-    if (e.target.id.startsWith("deleteEvent")) {
-        const [temp, eventId] = e.target.id.split("--");
-        eventHub.dispatchEvent(new CustomEvent("deleteEventEvent", {
-            detail: {
-                eventId
-            }
-        }))
-    }
-    if (e.target.id.startsWith("eventWeather")) {
-        const [temp, eventId] = e.target.id.split("--");
-        const ev = getEventById(parseInt(eventId));
-        const eventDates = Date.parse(ev.eventDate)
-        const todayDate = Date.now()
-        const difference = (eventDates - todayDate) / (1000 * 60 * 60 * 24)
-        console.log(eventDates)
-        console.log(todayDate)
-        console.log(difference)
-        if (difference < 7) {
-
-            eventWeather(ev.eventCity, ev.eventState, Math.ceil(difference));
-        }
-
-
-    }
+  }
 })
