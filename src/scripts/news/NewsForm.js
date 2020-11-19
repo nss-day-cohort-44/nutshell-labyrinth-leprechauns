@@ -82,7 +82,7 @@ eventHub.addEventListener("click", e =>{
                 timeOfArticlePost,
                 userId
             }
-            editNews(newArticlePost, userId)
+            editNews(newArticlePost, articleId)
         } else{window.alert("Please fill out all fields before submitting your article")
         return;
         

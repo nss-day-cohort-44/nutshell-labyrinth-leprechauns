@@ -289,3 +289,20 @@ footer{
 left: 46%;
 bottom: 25%;
 }
+
+.userPicture{
+  width: 90px;
+  height: 120px;
+}
+
+.userDisplay{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.userPictureDiv{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
