@@ -21,13 +21,18 @@ export const ChatList = () => {
     .then(() => {
       messages = useMessages()
       users = useUsers()
+      // The below filters chat messages for private messages. --DK
       const filteredMessages = messages.filter(message => {
+        // Check if the message has a non-zero privateId, indicating that it is a private message.
         if (message.privateId !== 0) {
+          // Return true (that is, add to filteredMessages) if the current user is the user to whom it
+          // is addressed, OR if the current user is the one who sent the message.
           if (message.privateId === parseInt(sessionStorage.getItem("activeUser")) ||
             message.userId === parseInt(sessionStorage.getItem("activeUser"))) {
             return true;
           }
         } else {
+          // If privateId is 0, the message is public and is added to filterMessages.
           return true;
         }
       })
@@ -84,20 +89,27 @@ eventHub.addEventListener("click", (e) => {
     saveMessage(newMessage)
     ChatList()
   }
+  // The code below is for editing messages. --DK
   if (e.target.id.startsWith("editMessage--")) {
     const [temp, id] = e.target.id.split("--")
+    // Select the parent element of the edit button, i.e. the element that contains it, in this case the
+    // <p></p> tags that surround each chat message. Change it to a text field with a preset value
+    // of the original message text and an associated save button.
     e.target.parentElement.innerHTML = `<input type="text" value="${getMessageById(id).message}"
-    id="editMessageField--${id}"></input><button id="editMessageButton--${id}" class="btn">Save</button>`
+    id="editMessageField--${id}"></input><button id="editMessageSaveButton--${id}" class="btn">Save</button>`
   }
-
-  if(e.target.id.startsWith("editMessageButton--")) {
+  // This checks if we have clicked the save button that is generated when the edit button is clicked.
+  if(e.target.id.startsWith("editMessageSaveButton--")) {
     const [temp, id] = e.target.id.split("--");
-    const field = document.getElementById(`editMessageField--${id}`);
+    // Get the new value of the text field we generated when the edit button was clicked.
+    const newMessage = document.getElementById(`editMessageField--${id}`).value;
     const message = getMessageById(id);
     eventHub.dispatchEvent(new CustomEvent("editMessage", {
+      // Recreate the message object, passing in the new text and the time it was updated, and keeping
+      // all other properties the same.
       detail: {
-        userId: parseInt(sessionStorage.getItem("activeUser")),
-        message: field.value,
+        userId: message.userId,
+        message: newMessage,
         postTime: message.postTime,
         updateTime: Date.now(),
         privateId: message.privateId,

@@ -16,26 +16,9 @@ eventHub.addEventListener("storage", e => {
 })
 
 eventHub.addEventListener("editMessage", e => {
-  console.log("e: ", e)
-  const message = {
-    userId: e.detail.messageId,
-    message: e.detail.message,
-    postTime: e.detail.postTime,
-    updateTime: e.detail.updateTime,
-    privateId: e.detail.privateId,
-    id: e.detail.id
-  }
-
-  editMessage(message)
+  // Pass the detail object, which contains all the correct properties, onto the editMessage function.
+  editMessage(e.detail)
 })
-
-// {
-//   "userId": 1,
-//   "message": "TEST",
-//   "postTime": 1605734469188,
-//   "privateId": 0,
-//   "id": 1
-// },
 
 const dispatchStateChangeEvent = () => {
   const chatStateChangeEvent = new CustomEvent("chatStateChanged")
@@ -86,7 +69,6 @@ export const saveMessage = (message) => {
 
 export const editMessage = message => {
 
-  console.log("message: ", message)
   return fetch(`http://localhost:8088/messages/${message.id}`, {
     method: "PATCH",
     headers: {
