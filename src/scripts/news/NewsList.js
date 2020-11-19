@@ -1,7 +1,7 @@
 // authored by kyle. this module is responsible for posting the correct news articles to the news feed
 
 import { renderNewsButton } from "./NewsButton.js"
-import { newsArticleCard } from "./NewsCard.js"
+import { newsArticleCard, renderFormInNewsCard } from "./NewsCard.js"
 import { deleteNews, getNews, useNews, getNewsArrayByUser } from "./NewsDataProvider.js"
 import { useFriends, getFriendArrayByUser, getFriends } from "../friends/FriendProvider.js"
 
@@ -61,3 +61,22 @@ eventHub.addEventListener("click", event =>{
             }
     
 })
+
+eventHub.addEventListener("editButton", (event) =>{
+    renderFormInNewsCard(event.detail.articleId)
+    const newsCollection = useNews()
+    const articleToEdit = newsCollection.find( articleObj =>{
+        return articleObj.id === parseInt(event.detail.articleId)
+    })
+    let articleId = document.querySelector("#editArticleId")
+    let title = document.querySelector("#editTitleOfArticle")
+    console.log(title)
+    let about = document.querySelector("#editAboutArticle")
+    let url = document.querySelector("#editArticleUrl")
+    title.value = articleToEdit.titleOfArticle
+    about.value = articleToEdit.synopsisOfArticle
+    url.value = articleToEdit.urlOfArticle
+    articleId.value = articleId.id
+})
+
+

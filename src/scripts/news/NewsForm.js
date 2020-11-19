@@ -1,6 +1,6 @@
 // authored by kyle simmons. this module renders the news form
 
-import { saveNews } from "./NewsDataProvider.js"
+import { editNews, saveNews } from "./NewsDataProvider.js"
 
 const eventHub = document.querySelector(".container")
 // event to hear click from the post news article button. responds by rendering the html for the button
@@ -59,21 +59,33 @@ eventHub.addEventListener("click", clickEvent =>{
     }else{window.alert("Please fill out all fields before submitting your article")
                 return;
             }}
-    // else if(clickEvent.target.id === "saveNewsArticle" && document.querySelector("#titleOfArticle").value !== "" && document.querySelector("#aboutArticle") !== "" && document.querySelector("#articleUrl")){
-    //     const timeOfArticlePost = Date.now()
-    //     const titleOfArticle = document.querySelector("#titleOfArticle").value
-    //     const synopsisOfArticle = document.querySelector("#aboutArticle").value
-    //     const urlOfArticle = document.querySelector("#articleUrl").value
-    //     const userId = +sessionStorage.getItem("activeUser")
-    //     const id = document.querySelector("#articleId").value
-    //     const newArticlePost = {
-    //         titleOfArticle,
-    //         synopsisOfArticle,
-    //         urlOfArticle,
-    //         timeOfArticlePost,
-    //         userId
-    //     }
-    //     editNews(newArticlePost, id)
-    // }
+
 })
 
+eventHub.addEventListener("click", e =>{
+    const [prefix, articleId] = e.target.id.split("--")
+    if(e.target.id === `updateNewsArticle--${articleId}`){
+
+        const editTitleOfArticle = document.querySelector("#editTitleOfArticle").value
+        const editSynopsisOfArticle = document.querySelector("#editAboutArticle").value
+        const editUrlOfArticle = document.querySelector("#editArticleUrl").value
+        if(editTitleOfArticle !== "" && editSynopsisOfArticle !== "" && editUrlOfArticle !== ""){
+            const timeOfArticlePost = Date.now()
+            const titleOfArticle = document.querySelector("#editTitleOfArticle").value
+            const synopsisOfArticle = document.querySelector("#editAboutArticle").value
+            const urlOfArticle = document.querySelector("#editArticleUrl").value
+            const userId = +sessionStorage.getItem("activeUser")
+            const newArticlePost = {
+                titleOfArticle,
+                synopsisOfArticle,
+                urlOfArticle,
+                timeOfArticlePost,
+                userId
+            }
+            editNews(newArticlePost, userId)
+        } else{window.alert("Please fill out all fields before submitting your article")
+        return;
+        
+    }
+}
+})
