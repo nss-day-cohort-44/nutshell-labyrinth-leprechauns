@@ -14,7 +14,9 @@ export const TaskEntryComponent = (entry) => {
         <li>Task: ${entry.task}<input type = "checkbox" id = "check--${entry.id}"></input></li>
         <li>Date to be Completed: ${entry.date}</li>
          </ul>
+         <div class="taskDelete">
          <button id = "deleteTask--${entry.id}">Delete</button>
+        </div>
          <button id = "editTask--${entry.id}">Edit</button>
         
         
