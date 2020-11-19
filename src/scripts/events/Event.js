@@ -4,25 +4,25 @@
 
 export const EventCard = (ev) => {
   if (ev.userId === parseInt(sessionStorage.getItem("activeUser")))
-    return `<div class="eventCard"><p>${ev.name}</p> <p>${ev.eventCity}, ${ev.eventState}</p> <p>${
+    return `<div class="eventCard"><h4>${ev.name}</h4> <p>${ev.eventCity}, ${ev.eventState}</p> <p>${
       ev.eventDate
-    }</p><button id="editEventButton--${ev.id}">Edit</button>
-    ${AddDeleteButton(ev)}${AddWeatherButton(ev)}</div>`
+    }</p><div class="eventButtons"><button id="editEventButton--${ev.id}">Edit</button>
+    ${AddWeatherButton(ev)}${AddDeleteButton(ev)}</div></div>`
   else
-    return `<div class="eventCardFriend"><p>${ev.name}</p> <p>${ev.eventCity}, ${ev.eventState}</p> <p>${ev.eventDate}</p></div>`
+    return `<div class="eventCardFriend"><p>${ev.name}</p> <p>${ev.eventCity}, ${ev.eventState}</p> <p>${ev.eventDate}</p><div class ="eventWeatherButtonDiv">${AddWeatherButton(ev)}</div></div>`
 }
 
 export const EventCardFirst = (ev) => {
   if (ev.userId === parseInt(sessionStorage.getItem("activeUser")))
     return `<div class="eventCard nonOffensive"><p><b>${ev.name}</p> <p>${ev.eventCity}, ${
       ev.eventState
-    }</p> <p>${ev.eventDate}</p></b><button id="editEventButton--${
+    }</p> <p>${ev.eventDate}</p></b><div class="eventButtons"><button id="editEventButton--${
       ev.id
-    }">Edit</button> ${AddDeleteButton(ev)}${AddWeatherButton(ev)}</div></div>`
+    }">Edit</button> ${AddWeatherButton(ev)} ${AddDeleteButton(ev)}</div></div></div>`
   else
     return `<div class="eventCardFriend nonOffensive"><p><b>${ev.name}</p> <p>${ev.eventCity}, ${
       ev.eventState
-    }</p> <p>${ev.eventDate}</p></b>${AddWeatherButton(ev)}</div>`
+    }</p> <p>${ev.eventDate}</p></b><div class = "eventWeatherButtonDiv">${AddWeatherButton(ev)}</div></div>`
 }
 
 const AddDeleteButton = (ev) => {

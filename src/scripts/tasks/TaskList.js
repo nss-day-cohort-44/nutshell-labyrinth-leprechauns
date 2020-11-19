@@ -21,6 +21,7 @@ export const TaskFormRender = () => {
         } else {
             TaskHtml()
         }
+       
     })
 }
 // this function is responsible for getting the tasks from the database and then rendering those tasks

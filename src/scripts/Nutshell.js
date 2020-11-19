@@ -83,7 +83,10 @@ export const Nutshell = () => {
       
       </div>    
   <div class="asideRight__chat">
-      
+      <div class="asideRight__chat__output">
+      </div>
+      <div class="asideRight__chat__input">
+      </div>
     </div>  
 </aside>`
 displayTaskButton()

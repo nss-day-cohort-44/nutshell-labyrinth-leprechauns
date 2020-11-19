@@ -33,7 +33,7 @@ export const EventList = () => {
       )
     }
   })
-  let htmlRep = "<h2>Event List</h2>"
+  let htmlRep = "<h2>~Event List~</h2>"
   htmlRep += evArray
     .map((ev, i) => {
       if (i === 0) return `${EventCardFirst(ev)}`
