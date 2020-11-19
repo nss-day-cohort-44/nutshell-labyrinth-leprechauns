@@ -15,6 +15,7 @@ let users = []
 // Gets the users and messages arrays from api, then parsed the array into json and puts in variable. Uses the variables to render the HTML
 
 export const ChatList = () => {
+  console.trace();
   const messagesTarget = document.querySelector(".asideRight__chat")
   return getMessages()
     .then(getUsers)
@@ -36,6 +37,7 @@ export const ChatList = () => {
           return true;
         }
       })
+      
       render(filteredMessages, users, messagesTarget)
       const messagesInputTarget = document.querySelector(".asideRight__chat__input")
       renderMessageForm(messagesInputTarget)

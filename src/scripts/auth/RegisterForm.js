@@ -3,11 +3,6 @@ import { Nutshell } from "../Nutshell.js"
 const contentTarget = document.querySelector(".auth--register")
 const eventHub = document.querySelector(".container")
 
-eventHub.addEventListener("userAuthenticated", (e) => {
-  contentTarget.innerHTML = ""
-  Nutshell()
-})
-
 eventHub.addEventListener("click", (e) => {
   if (e.target.id === "register--button") {
     const username = document.querySelector("#register--username").value

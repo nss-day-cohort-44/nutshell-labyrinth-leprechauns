@@ -9,6 +9,7 @@ import { eventWeather } from "../weather/WeatherSelect.js"
 const eventHub = document.querySelector(".container")
 
 export const EventList = () => {
+    console.trace();
   const contentTarget = document.querySelector(".eventFeed")
   const user = parseInt(sessionStorage.getItem("activeUser"))
 
