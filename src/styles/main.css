@@ -314,7 +314,7 @@ bottom: 25%;
 
 .eventButtons{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 2%;
 }
 

@@ -14,7 +14,7 @@ export const EventForm = () => {
     let [month, date, year] = new Date().toLocaleDateString("en-US").split("/")
 
     // Create name, location, and date fields, with the date auto-populated with today's date.
-    let htmlRep = `<h2 id="addEventH2">Add An Event</h2>
+    let htmlRep = `<h2 id="addEventH2">~Add An Event~</h2>
     <input type="date" id="createForm__eventDate" value="${year}-${month}-${date}">
     <h6>Event Name</h6>
     <input type="text" id="createForm__eventName" placeholder="Name">

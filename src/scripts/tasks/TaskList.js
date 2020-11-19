@@ -16,11 +16,12 @@ eventHub.addEventListener("taskStateChanged", () =>  TaskList())
 // this function simply listens for the create task button click event and then renders the form to the dom to create a task
 export const TaskFormRender = () => {
     eventHub.addEventListener("taskButtonClicked", event => {
-        if(document.getElementById("addTaskH2")) {
-            RenderCreateArea();
-        } else {
-            TaskHtml()
-        }
+        // if(document.getElementById("addTaskH2")) {
+        //     RenderCreateArea();
+        // } else {
+        //     TaskHtml()
+        // }
+        TaskHtml()
     })
 }
 // this function is responsible for getting the tasks from the database and then rendering those tasks

@@ -2,13 +2,7 @@
 
 import { getUserByUsername, getUsers, useUsers } from "../users/UserProvider.js"
 import { Message } from "./Message.js"
-import {
-  getMessages,
-  saveMessage,
-  useMessages,
-  deleteMessage,
-  getMessageById,
-} from "./chatProvider.js"
+import { getMessages, saveMessage, useMessages, deleteMessage, getMessageById } from "./chatProvider.js"
 import { renderMessageForm } from "./ChatForm.js"
 import { addFriend } from "../friends/FriendProvider.js"
 import { getUserByUserId } from "../users/UserProvider.js"
@@ -28,20 +22,18 @@ export const ChatList = () => {
       messages = useMessages()
       users = useUsers()
       // The below filters chat messages for private messages. --DK
-      const filteredMessages = messages.filter((message) => {
+      const filteredMessages = messages.filter(message => {
         // Check if the message has a non-zero privateId, indicating that it is a private message.
         if (message.privateId !== 0) {
           // Return true (that is, add to filteredMessages) if the current user is the user to whom it
           // is addressed, OR if the current user is the one who sent the message.
-          if (
-            message.privateId === parseInt(sessionStorage.getItem("activeUser")) ||
-            message.userId === parseInt(sessionStorage.getItem("activeUser"))
-          ) {
-            return true
+          if (message.privateId === parseInt(sessionStorage.getItem("activeUser")) ||
+            message.userId === parseInt(sessionStorage.getItem("activeUser"))) {
+            return true;
           }
         } else {
           // If privateId is 0, the message is public and is added to filterMessages.
-          return true
+          return true;
         }
       })
       render(filteredMessages, users, messagesTarget)
@@ -84,10 +76,11 @@ eventHub.addEventListener("click", (e) => {
   if (e.target.id === "messageInputBtn") {
     const userId = sessionStorage.activeUser
     const messageText = document.querySelector("#messageInput").value
-    let privateId = 0
+    let privateId = 0;
     if (messageText.startsWith("@")) {
       const user = getUserByUsername(messageText.slice(1, messageText.indexOf(" ")))
-      if (user) privateId = user.id
+      if (user)
+        privateId = user.id;
     }
     const time = Date.now()
     const newMessage = {
@@ -95,7 +88,7 @@ eventHub.addEventListener("click", (e) => {
       "message": messageText,
       "postTime": time,
       "updateTime": time,
-      "privateId": privateId,
+      "privateId": privateId
     }
     saveMessage(newMessage)
     ChatList()
@@ -110,27 +103,27 @@ eventHub.addEventListener("click", (e) => {
     id="editMessageField--${id}"></input><button id="editMessageSaveButton--${id}" class="btn">Save</button>`
   }
   // This checks if we have clicked the save button that is generated when the edit button is clicked.
-  if (e.target.id.startsWith("editMessageSaveButton--")) {
-    const [temp, id] = e.target.id.split("--")
+  if(e.target.id.startsWith("editMessageSaveButton--")) {
+    const [temp, id] = e.target.id.split("--");
     // Get the new value of the text field we generated when the edit button was clicked.
-    const newMessage = document.getElementById(`editMessageField--${id}`).value
-    const message = getMessageById(id)
-    eventHub.dispatchEvent(
-      new CustomEvent("editMessage", {
-        // Recreate the message object, passing in the new text and the time it was updated, and keeping
-        // all other properties the same.
-        detail: {
-          userId: message.userId,
-          message: newMessage,
-          postTime: message.postTime,
-          updateTime: Date.now(),
-          privateId: message.privateId,
-          id: message.id,
-        },
-      })
-    )
+    const newMessage = document.getElementById(`editMessageField--${id}`).value;
+    const message = getMessageById(id);
+    eventHub.dispatchEvent(new CustomEvent("editMessage", {
+      // Recreate the message object, passing in the new text and the time it was updated, and keeping
+      // all other properties the same.
+      detail: {
+        userId: message.userId,
+        message: newMessage,
+        postTime: message.postTime,
+        updateTime: Date.now(),
+        privateId: message.privateId,
+        id: message.id
+      }
+    }))
   }
 })
+
+
 
 eventHub.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id.startsWith("deleteMessage--")) {
