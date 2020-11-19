@@ -38,8 +38,13 @@ const deleteEvent = (eventId) => {
   })
 }
 
+eventHub.addEventListener("editEvent", (e) => {
+  console.log(e)
+  editEvent(e.detail.id, e.detail)
+})
+
 const editEvent = (eventId, event) => {
-  return fetch(`http://localhost:8088/events/${eventid}`, {
+  return fetch(`http://localhost:8088/events/${eventId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -102,8 +107,8 @@ eventHub.addEventListener("deleteEventEvent", (e) => {
   })
 })
 
-eventHub.addEventListener("editEventEvent", (e) => {
-  editEvent(e.detail.eventId).then(() => {
-    dispatchStateChange()
-  })
-})
+// eventHub.addEventListener("editEventEvent", (e) => {
+//   editEvent(e.detail.eventId).then(() => {
+//     dispatchStateChange()
+//   })
+// })
