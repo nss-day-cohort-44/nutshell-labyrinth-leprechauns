@@ -6,6 +6,6 @@
 export const RenderCreateArea = () => {
     const contentTarget = document.querySelector("#createForm");
     contentTarget.innerHTML =`
-    <h2>---CREATE---</h2>
+    <h2>~CREATE~</h2>
     </div>`
 }

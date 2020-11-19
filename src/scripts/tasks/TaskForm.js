@@ -1,6 +1,7 @@
 // Author: Travis Milner, Purpose: This module is responsible for rendering a form and looking for a submit click that save thats forms value. 
 
 
+import { RenderCreateArea } from "../home/HomePage.js"
 import { saveTaskList } from "./TaskDataProvider.js"
 
 const eventHub = document.querySelector(".container")
@@ -36,6 +37,6 @@ eventHub.addEventListener("click", clickEvent => {
             return 
         }
         saveTaskList(NewTask)
-        console.log(NewTask)
+        RenderCreateArea();
     }
 })
