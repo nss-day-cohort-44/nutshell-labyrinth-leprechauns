@@ -9,7 +9,7 @@ export const newsClickEventHeard = () =>{
     eventHub.addEventListener("postArticleButtonClicked", event =>{
         // console.log("Post Article click heard")
         const contentTarget = document.querySelector("#createForm")
-        contentTarget.innerHTML = `<h2>Post An Article</h2>
+        contentTarget.innerHTML = `<h2>~Post An Article~</h2>
         <h6>Title Of Article</h6>
         <input type="hidden" name="articleId" id="articleId">
         <input type="text" id="titleOfArticle" name="titleOfArticle">
@@ -45,7 +45,7 @@ eventHub.addEventListener("click", clickEvent =>{
             userId
         }
         saveNews(newArticlePost)
-        .then(contentTarget.innerHTML =`<h2>Post An Article</h2>
+        .then(contentTarget.innerHTML =`<h2>~Post An Article~</h2>
         <h6>Title Of Article</h6>
         <input type="hidden" name="articleId" id="articleId">
         <input type="text" id="titleOfArticle" name="titleOfArticle">

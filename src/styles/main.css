@@ -261,7 +261,7 @@ header {
 
 }
 footer{
-
+  position: static;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -278,4 +278,12 @@ footer{
 
 .loginButton, .registerButton{
   margin-top: 1%;
+}
+
+.logoLogin{
+  position: fixed;
+  width: 100px;
+  height: 75px;
+left: 46%;
+bottom: 25%;
 }

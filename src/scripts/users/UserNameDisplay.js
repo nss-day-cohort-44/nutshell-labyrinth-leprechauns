@@ -5,7 +5,7 @@ export const displayName = () =>{
     const activeUser = parseInt(sessionStorage.getItem("activeUser"))
    const userObj = getUserByUserId(activeUser)
 
-   contentTarget.innerHTML = `<h2>Hello, ${userObj.username}</h2>`
+   contentTarget.innerHTML = `<h2>~Hello, ${userObj.username}~</h2>`
     
     
 }
