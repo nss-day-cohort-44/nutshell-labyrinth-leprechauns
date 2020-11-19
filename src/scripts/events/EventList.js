@@ -47,7 +47,6 @@ eventHub.addEventListener("eventListStateChanged", (e) => {
   getEvents().then(EventList)
 })
 
-<<<<<<< HEAD
 eventHub.addEventListener("click", (e) => {
   if (e.target.id.startsWith("deleteEvent")) {
     const [temp, eventId] = e.target.id.split("--")
@@ -62,17 +61,6 @@ eventHub.addEventListener("click", (e) => {
   if (e.target.id.startsWith("eventWeather")) {
     const [temp, eventId] = e.target.id.split("--")
     const ev = getEventById(parseInt(eventId))
-=======
-const AddDeleteButton = ev => {
-    // Only add a delete button if the active user created this event.
-    if (ev.userId === +sessionStorage.getItem("activeUser"))
-        return `<button class="deleteEvent" id="deleteEvent--${ev.id}">Delete</button>`;
-    else
-        return ``;
-}
-
-const AddWeatherButton = ev => {
->>>>>>> master
     const eventDates = Date.parse(ev.eventDate)
     const todayDate = Date.now()
     const difference = (eventDates - todayDate) / (1000 * 60 * 60 * 24)
@@ -80,26 +68,25 @@ const AddWeatherButton = ev => {
     console.log(todayDate)
     console.log(difference)
     if (difference < 7) {
-<<<<<<< HEAD
       eventWeather(ev.eventCity, ev.eventState, Math.ceil(difference))
-=======
-        return `<button class="eventWeather" id="eventWeather--${ev.id}">Show Weather</button>`;
+      return `<button class="eventWeather" id="eventWeather--${ev.id}">Show Weather</button>`
     } else {
-        return ""
-    }
-}
-
-eventHub.addEventListener("click", e => {
-    if (e.target.id.startsWith("deleteEvent")) {
-        const [temp, eventId] = e.target.id.split("--");
-        eventHub.dispatchEvent(new CustomEvent("deleteEventEvent", {
-            detail: {
-                eventId
-            }
-        }))
->>>>>>> master
+      return ""
     }
   }
+
+  eventHub.addEventListener("click", (e) => {
+    if (e.target.id.startsWith("deleteEvent")) {
+      const [temp, eventId] = e.target.id.split("--")
+      eventHub.dispatchEvent(
+        new CustomEvent("deleteEventEvent", {
+          detail: {
+            eventId,
+          },
+        })
+      )
+    }
+  })
   if (e.target.id.startsWith("editEventButton")) {
     const [prefix, id] = e.target.id.split("--")
     let [month, date, year] = new Date().toLocaleDateString("en-US").split("/")
