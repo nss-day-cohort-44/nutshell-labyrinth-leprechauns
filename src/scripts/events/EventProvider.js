@@ -4,6 +4,7 @@
 
 import { getFriendArrayByUser } from "../friends/FriendProvider.js"
 import { RenderCreateArea } from "../home/HomePage.js"
+import { EventList } from "./EventList.js"
 
 let events = []
 const eventHub = document.querySelector(".container")
@@ -50,6 +51,8 @@ const editEvent = (eventId, event) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(event),
+  }).then(() => {
+    eventHub.dispatchEvent(new CustomEvent("eventListStateChanged"))
   })
 }
 

@@ -32,7 +32,7 @@ export const EventList = () => {
       )
     }
   })
-
+  console.log(evArray)
   let htmlRep = "<h2>Event List</h2>"
   htmlRep += evArray
     .map((ev, i) => {
@@ -94,7 +94,7 @@ eventHub.addEventListener("click", (e) => {
     eventHub.dispatchEvent(
       new CustomEvent("editEvent", {
         detail: {
-          userID: ev.userId,
+          userId: ev.userId,
           name: updatedEventName,
           eventDate: updatedEventDate,
           eventCity: updatedEventCity,
@@ -103,5 +103,6 @@ eventHub.addEventListener("click", (e) => {
         },
       })
     )
+    EventList()
   }
 })
