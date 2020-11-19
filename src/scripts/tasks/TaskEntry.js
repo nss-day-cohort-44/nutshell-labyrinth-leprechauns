@@ -32,8 +32,22 @@ eventHub.addEventListener("click", event => {
                 const updatedTask = useTasks()
                 render(updatedTask)
             }
+
         )
     }
+    if(event.target.id.startsWith("editTask--")) {
+        console.log("edit got clicked")
+        const [prefix, id] = event.target.id.split("--")
+        console.log(id)
+        event.target.parentElement.innerHTML = `<form id = "taskForm">
+        <input type = "text" placeholder = "Task..." id="taskField" value = "${getTaskById(id).task}"></input><br>
+        <label for = "date">Expected Completion Date</label><br>
+        <input type = "date" id = "date" value = "${getTaskById(id).date}"></input>
+        <button id = "submit" type = "button">Save Task</button>
+    </form> `
+
+        
+}
 })
 // this is an event listener that looks for a change event on the checkbox next to each task. it then creates a "new object" with the completed field equaling true and then renders the database to the dom again
 eventHub.addEventListener("change", event => {
@@ -63,4 +77,8 @@ const taskComplete = (task) => {
     },
         body: JSON.stringify(task)
     })
+}
+
+export const getTaskById = (id) => {
+    return useTasks().find(task => task.id === parseInt(id))
 }
