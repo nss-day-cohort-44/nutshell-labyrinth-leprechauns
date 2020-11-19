@@ -8,10 +8,10 @@ const eventHub = document.querySelector(".container")
 export const newsClickEventHeard = () => {
 
     eventHub.addEventListener("postArticleButtonClicked", event => {
-        // console.log("Post Article click heard")
-        // if (document.getElementById("addArticleH2")) {
-        //     RenderCreateArea()
-        // } else {
+        console.log("Post Article click heard")
+        if (document.getElementById("addArticleH2")) {
+            RenderCreateArea()
+        } else {
             const contentTarget = document.querySelector("#createForm")
             contentTarget.innerHTML = `<h2 id="addArticleH2">~Post An Article~</h2>
         <h6>Title Of Article</h6>
@@ -24,7 +24,7 @@ export const newsClickEventHeard = () => {
         <br><br>
         <button id="saveNewsArticle">Post</button>
         `
-        // }
+        }
     })
 }
 // sends object to the api based off of the filled in form components
