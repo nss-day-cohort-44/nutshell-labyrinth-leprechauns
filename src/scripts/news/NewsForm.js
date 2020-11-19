@@ -1,5 +1,6 @@
 // authored by kyle simmons. this module renders the news form
 
+import { RenderCreateArea } from "../home/HomePage.js"
 import { editNews, saveNews } from "./NewsDataProvider.js"
 
 const eventHub = document.querySelector(".container")
@@ -45,17 +46,7 @@ eventHub.addEventListener("click", clickEvent =>{
             userId
         }
         saveNews(newArticlePost)
-        .then(contentTarget.innerHTML =`<h2>~Post An Article~</h2>
-        <h6>Title Of Article</h6>
-        <input type="hidden" name="articleId" id="articleId">
-        <input type="text" id="titleOfArticle" name="titleOfArticle">
-        <h6>Synopsis of Article</h6>
-        <input type="text" id="aboutArticle" name="aboutArticle">
-        <h6>Url</h6>
-        <input type="text" id="articleUrl" name="articleUrl">
-        <br>
-        <button id="saveNewsArticle">Post</button>
-        `)
+        .then(RenderCreateArea)
     }else{window.alert("Please fill out all fields before submitting your article")
                 return;
             }}
