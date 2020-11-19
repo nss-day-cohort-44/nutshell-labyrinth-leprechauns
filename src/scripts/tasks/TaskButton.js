@@ -13,7 +13,6 @@ const eventHub = document.querySelector(".container")
 
 eventHub.addEventListener("click", clickEvent => {
     if(clickEvent.target.id === "task") {
-        console.log("taskButtonClicked")
 
         const customEvent = new CustomEvent("taskButtonClicked", {
             detail: {

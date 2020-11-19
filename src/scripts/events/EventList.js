@@ -32,7 +32,6 @@ export const EventList = () => {
       )
     }
   })
-  console.log(evArray)
   let htmlRep = "<h2>Event List</h2>"
   htmlRep += evArray
     .map((ev, i) => {
