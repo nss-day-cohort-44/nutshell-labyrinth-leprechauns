@@ -13,7 +13,7 @@ import { TaskFormRender, TaskList } from "./tasks/TaskList.js"
 import { defaultWeather } from "./weather/WeatherSelect.js"
 import "./events/EventForm.js"
 import { displayName } from "./users/UserNameDisplay.js"
-import {hideDivs} from "./auth/RegisterForm.js"
+import {hideDivs} from "./CSS.js"
 const mainBody = document.querySelector(".mainBody")
 
 export const Nutshell = () => {
