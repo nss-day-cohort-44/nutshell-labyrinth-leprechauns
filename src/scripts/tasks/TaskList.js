@@ -4,6 +4,7 @@
 import { TaskHtml } from "./TaskForm.js"
 import { getTasks, useTasks } from "./TaskDataProvider.js"
 import { TaskEntryComponent } from "./TaskEntry.js"
+import { RenderCreateArea } from "../home/HomePage.js"
 
 
 const eventHub = document.querySelector(".container")
@@ -15,7 +16,11 @@ eventHub.addEventListener("taskStateChanged", () =>  TaskList())
 // this function simply listens for the create task button click event and then renders the form to the dom to create a task
 export const TaskFormRender = () => {
     eventHub.addEventListener("taskButtonClicked", event => {
-        TaskHtml()
+        if(document.getElementById("addTaskH2")) {
+            RenderCreateArea();
+        } else {
+            TaskHtml()
+        }
     })
 }
 // this function is responsible for getting the tasks from the database and then rendering those tasks
