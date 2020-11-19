@@ -5,12 +5,15 @@ import { editNews, saveNews } from "./NewsDataProvider.js"
 
 const eventHub = document.querySelector(".container")
 // event to hear click from the post news article button. responds by rendering the html for the button
-export const newsClickEventHeard = () =>{
-    
-    eventHub.addEventListener("postArticleButtonClicked", event =>{
+export const newsClickEventHeard = () => {
+
+    eventHub.addEventListener("postArticleButtonClicked", event => {
         // console.log("Post Article click heard")
-        const contentTarget = document.querySelector("#createForm")
-        contentTarget.innerHTML = `<h2>~Post An Article~</h2>
+        if (document.getElementById("addArticleH2")) {
+            RenderCreateArea()
+        } else {
+            const contentTarget = document.querySelector("#createForm")
+            contentTarget.innerHTML = `<h2= id="addArticleH2">~Post An Article~</h2>
         <h6>Title Of Article</h6>
         <input type="hidden" name="articleId" id="articleId">
         <input type="text" id="titleOfArticle" name="titleOfArticle">
@@ -21,46 +24,49 @@ export const newsClickEventHeard = () =>{
         <br><br>
         <button id="saveNewsArticle">Post</button>
         `
+        }
     })
 }
 // sends object to the api based off of the filled in form components
-eventHub.addEventListener("click", clickEvent =>{
+eventHub.addEventListener("click", clickEvent => {
     const contentTarget = document.querySelector("#createForm")
     const id = document.querySelector("#articleId")
-    if(clickEvent.target.id === "saveNewsArticle"){
-        const titleOfArticle = document.querySelector("#titleOfArticle").value
-            const synopsisOfArticle = document.querySelector("#aboutArticle").value
-            const urlOfArticle = document.querySelector("#articleUrl").value
-        if(id.value === "" && titleOfArticle !== "" && synopsisOfArticle !== "" && urlOfArticle !== ""){ 
-        const timeOfArticlePost = Date.now()
+    if (clickEvent.target.id === "saveNewsArticle") {
         const titleOfArticle = document.querySelector("#titleOfArticle").value
         const synopsisOfArticle = document.querySelector("#aboutArticle").value
         const urlOfArticle = document.querySelector("#articleUrl").value
-        const userId = +sessionStorage.getItem("activeUser")
-        
-        const newArticlePost = {
-            titleOfArticle,
-            synopsisOfArticle,
-            urlOfArticle,
-            timeOfArticlePost,
-            userId
+        if (id.value === "" && titleOfArticle !== "" && synopsisOfArticle !== "" && urlOfArticle !== "") {
+            const timeOfArticlePost = Date.now()
+            const titleOfArticle = document.querySelector("#titleOfArticle").value
+            const synopsisOfArticle = document.querySelector("#aboutArticle").value
+            const urlOfArticle = document.querySelector("#articleUrl").value
+            const userId = +sessionStorage.getItem("activeUser")
+
+            const newArticlePost = {
+                titleOfArticle,
+                synopsisOfArticle,
+                urlOfArticle,
+                timeOfArticlePost,
+                userId
+            }
+            saveNews(newArticlePost)
+                .then(RenderCreateArea)
+        } else {
+            window.alert("Please fill out all fields before submitting your article")
+            return;
         }
-        saveNews(newArticlePost)
-        .then(RenderCreateArea)
-    }else{window.alert("Please fill out all fields before submitting your article")
-                return;
-            }}
+    }
 
 })
 
-eventHub.addEventListener("click", e =>{
+eventHub.addEventListener("click", e => {
     const [prefix, articleId] = e.target.id.split("--")
-    if(e.target.id === `updateNewsArticle--${articleId}`){
+    if (e.target.id === `updateNewsArticle--${articleId}`) {
 
         const editTitleOfArticle = document.querySelector("#editTitleOfArticle").value
         const editSynopsisOfArticle = document.querySelector("#editAboutArticle").value
         const editUrlOfArticle = document.querySelector("#editArticleUrl").value
-        if(editTitleOfArticle !== "" && editSynopsisOfArticle !== "" && editUrlOfArticle !== ""){
+        if (editTitleOfArticle !== "" && editSynopsisOfArticle !== "" && editUrlOfArticle !== "") {
             const timeOfArticlePost = Date.now()
             const titleOfArticle = document.querySelector("#editTitleOfArticle").value
             const synopsisOfArticle = document.querySelector("#editAboutArticle").value
@@ -74,9 +80,10 @@ eventHub.addEventListener("click", e =>{
                 userId
             }
             editNews(newArticlePost, articleId)
-        } else{window.alert("Please fill out all fields before submitting your article")
-        return;
-        
+        } else {
+            window.alert("Please fill out all fields before submitting your article")
+            return;
+
+        }
     }
-}
 })
