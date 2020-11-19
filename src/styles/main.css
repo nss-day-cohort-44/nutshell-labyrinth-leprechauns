@@ -306,3 +306,8 @@ bottom: 25%;
   justify-content: center;
   margin-bottom: 10px;
 }
+
+.weatherIcon{
+  background-color: dimgray;
+  border-radius: 50%;
+}

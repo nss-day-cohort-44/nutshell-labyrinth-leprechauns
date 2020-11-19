@@ -50,8 +50,8 @@ export const defaultWeather = () => {
                 // build out the string based off of the given html
                 return `
                 <div class="weatherDay">
-                <div>
-                <img src="${iconAddress}">
+                <div >
+                <img class="weatherIcon" src="${iconAddress}">
                 </div>
                 <p class="date">${condensedDate}</p>
                 <p class="highTemp">High: ${high}&#8457;</p>
@@ -100,8 +100,8 @@ export const eventWeather = (city, state, date) => {
                 const iconAddress = `http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`
                 return `
                 <div class="weatherDay">
-                <div>
-                <img src="${iconAddress}">
+                <div >
+                <img class="weatherIcon" src="${iconAddress}">
                 </div>
                 <p class="date">${condensedDate}</p>
                 <p class="highTemp">High: ${high}&#8457;</p>
