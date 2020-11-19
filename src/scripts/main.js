@@ -14,24 +14,31 @@ import { Nutshell } from "./Nutshell.js"
 
 const mainBody = document.querySelector(".mainBody")
 const auth = document.querySelector(".auth")
+const eventHub = document.querySelector(".container");
+
+eventHub.addEventListener("userAuthenticated", e => {
+    LoadApp();
+})
 
 //sessionStorage.setItem("activeUser", 1);
 // If no activeUser, render loging and Registration form
+export const LoadApp = () => {
+    if (!sessionStorage.activeUser) {
+        mainBody.classList.add(".hide")
+        auth.classList.remove(".hide")
+        LoginForm()
+        RegisterForm()
+    }
 
-if (!sessionStorage.activeUser) {
-  mainBody.classList.add(".hide")
-  auth.classList.remove(".hide")
-  LoginForm()
-  RegisterForm()
+    // If activeUser, render main App
+
+    if (sessionStorage.activeUser) {
+        mainBody.classList.remove(".hide")
+        auth.classList.add(".hide")
+        Nutshell()
+    }
 }
 
-// If activeUser, render main App
-
-if (sessionStorage.activeUser) {
-  mainBody.classList.remove(".hide")
-  auth.classList.add(".hide")
-  Nutshell()
-}
-
+LoadApp();
 // NewsList()
 // defaultWeather()

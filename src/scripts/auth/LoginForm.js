@@ -1,11 +1,11 @@
+import { LoadApp } from "../main.js"
 import { Nutshell } from "../Nutshell.js"
 
 const contentTarget = document.querySelector(".auth--login")
 const eventHub = document.querySelector(".container")
 
 eventHub.addEventListener("userAuthenticated", (e) => {
-  contentTarget.innerHTML = ""
-  Nutshell()
+  contentTarget.innerHTML = "";
 })
 
 eventHub.addEventListener("storage", e => {
