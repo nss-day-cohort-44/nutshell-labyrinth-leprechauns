@@ -40,14 +40,43 @@ eventHub.addEventListener("click", event => {
         const [prefix, id] = event.target.id.split("--")
         console.log(id)
         event.target.parentElement.innerHTML = `<form id = "taskForm">
-        <input type = "text" placeholder = "Task..." id="taskField" value = "${getTaskById(id).task}"></input><br>
+        <input type = "text" placeholder = "Task..." id="taskField--${id}" value = "${getTaskById(id).task}"></input><br>
         <label for = "date">Expected Completion Date</label><br>
-        <input type = "date" id = "date" value = "${getTaskById(id).date}"></input>
-        <button id = "submit" type = "button">Save Task</button>
+        <input type = "date" id = "taskDate--${id}" value = "${getTaskById(id).date}"></input>
+        <button id = "editSaveTask--${getTaskById(id).id}" type = "button">Save Task</button>
     </form> `
 
         
 }
+    if(event.target.id.startsWith("editSaveTask--")) {
+        const [prefix, id] = event.target.id.split("--")
+        const newTask = document.getElementById(`taskField--${id}`).value 
+        const newDate = document.getElementById(`taskDate--${id}`).value
+        const tasks = getTaskById(id)
+        eventHub.dispatchEvent(new CustomEvent("taskEdited", {
+            detail: {
+                id: tasks.id,
+                userId: tasks.userId,
+                task: newTask,
+                date: newDate,
+                completed: false
+
+        }})
+
+        )
+        
+    }
+})
+
+eventHub.addEventListener("taskEdited", e => {
+    console.log(e)
+    taskComplete(e.detail)
+    .then(getTasks).then(
+        () => {
+            const editedTask = useTasks()
+            render(editedTask)
+        }
+    )
 })
 // this is an event listener that looks for a change event on the checkbox next to each task. it then creates a "new object" with the completed field equaling true and then renders the database to the dom again
 eventHub.addEventListener("change", event => {
