@@ -9,6 +9,7 @@ const eventHub = document.querySelector(".container")
 // Listen for the storage event that fires every time localStorage is updated. If our local most recent
 // timestamp is lower than the timestamp in localStorage, update our chat list.
 eventHub.addEventListener("storage", (e) => {
+  console.log(e)
   if (useMostRecentChat() < parseInt(localStorage.getItem("mostRecentChatMessage"))) {
     getMessages().then(ChatList)
   }
