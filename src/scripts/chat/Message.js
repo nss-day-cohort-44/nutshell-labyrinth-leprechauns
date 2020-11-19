@@ -12,6 +12,14 @@ const AddDeleteButton = (messageObj) => {
   else return ``
 }
 
+const AddEditButton = messageObj => {
+  if(messageObj.userId === parseInt(sessionStorage.getItem("activeUser"))) {
+    return `<button id="editMessage--${messageObj.id}" class="btn">Edit</button>`
+  } else {
+    return ``;
+  }
+}
+
 const addNameButton = (messageObj, userObj) => {
   const relationships = useFriends()
   // relationships for current user
@@ -28,6 +36,6 @@ const addNameButton = (messageObj, userObj) => {
   } else {
     return `<p><button  id="addFriendFromMessage--${messageObj.userId}" class="btn"">${
       userObj.username
-    }</button>: ${messageObj.message} ${AddDeleteButton(messageObj)}</p>`
+    }</button>: ${messageObj.message} ${AddDeleteButton(messageObj)} ${AddEditButton(messageObj)}</p>`
   }
 }
