@@ -15,6 +15,7 @@ export const TaskEntryComponent = (entry) => {
         <li>Date to be Completed: ${entry.date}</li>
          </ul>
          <button id = "deleteTask--${entry.id}">Delete</button>
+         <button id = "editTask--${entry.id}">Edit</button>
         
         
         
