@@ -49,7 +49,7 @@ eventHub.addEventListener("friendListStateChanged", (event) => {
 
 const render = (messagesArr, userArr, target) => {
   target.innerHTML = `
-<h4>Chats</h4>
+<h4>~Chats~</h4>
 <div class="asideRight__chat__output">
 ${messagesArr
   .map((message) => {

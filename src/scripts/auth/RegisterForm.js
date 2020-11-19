@@ -46,14 +46,23 @@ eventHub.addEventListener("click", (e) => {
 const render = () => {
   contentTarget.innerHTML += `
         <section class="register">
+          <h4>Register</h4>
             <input id="register--username" type="text" placeholder="Enter your username">
             <input id="register--email" type="text" placeholder="Enter your email address">
-
+            <div class="registerButton">
             <button id="register--button">Register</button>
+            </div>
         </section>
     `
 }
 
 export const RegisterForm = () => {
   render()
+}
+
+export const hideDivs = () =>{
+  const auth = document.querySelector(".auth")
+  const loginDiv = document.querySelector(".loginDiv")
+  auth.style.display = "none"
+  loginDiv.style.display = "none"
 }

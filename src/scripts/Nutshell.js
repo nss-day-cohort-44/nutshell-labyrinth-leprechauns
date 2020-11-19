@@ -13,7 +13,7 @@ import { TaskFormRender, TaskList } from "./tasks/TaskList.js"
 import { defaultWeather } from "./weather/WeatherSelect.js"
 import "./events/EventForm.js"
 import { displayName } from "./users/UserNameDisplay.js"
-
+import {hideDivs} from "./auth/RegisterForm.js"
 const mainBody = document.querySelector(".mainBody")
 
 export const Nutshell = () => {
@@ -30,14 +30,14 @@ export const Nutshell = () => {
       
       </div>
   <div class="asideLeft__taskList">
-      <h2>---Task List---</h2>
+      <h2>~Task List~</h2>
      </div>
   
 </aside>
 <article class="centerBody">
   <div class="centerBody__create">
       <div id="createForm">
-          <h2>---CREATE---</h2>
+          <h2>~CREATE~</h2>
       </div>
   <div class="centerBody__create-Buttons">
       <div id="taskButton">
@@ -80,7 +80,7 @@ export const Nutshell = () => {
 </article>
 <aside class="asideRight">
   <div class="asideRight__friendsList">
-      <h2>---FRIENDS LIST---</h2>
+      
       </div>    
   <div class="asideRight__chat">
       
@@ -96,5 +96,6 @@ defaultWeather()
 getFriends().then(getUsers).then(FriendList).then(displayName)
 getEvents().then(EventList)
 ChatList();
+hideDivs()
 
 }

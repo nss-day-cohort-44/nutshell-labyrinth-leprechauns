@@ -18,7 +18,7 @@ export const FriendList = () => {
     // Get an array of all this user's friends (see FriendProvider module), then get an array of
     // user objects from the friends array (see UserProvider module).
     const friendArr = getFriendArrayByUser(userId).map(fr => getUserByUserId(fr.followingId));
-    let htmlRep = "<h3>Friends List</h3>";
+    let htmlRep = "<h4>~Friends~</h4>";
     htmlRep += AddFriendButton();
     htmlRep += `<ul>${friendArr.map(fr => `${Friend(fr)}${AddDeleteButton(fr.id)}`).join("")}</ul>`;
     contentTarget.innerHTML = htmlRep;

@@ -36,7 +36,7 @@ const render = (articleArray) =>{
     // getting the array for the news based off of user
     const evArray = getNewsArrayByUser(user);
     // making sure news list appears 1st 
-    let articleHTMLRep = "<h2>News List</h2>"
+    let articleHTMLRep = "<h2>~News Feed~</h2>"
     // mapp thru defined array. an article object is passed thru the news article card function to create the appropriate html
     articleHTMLRep += evArray.map(ev => `${newsArticleCard(ev)}`).join("")
     // add it to the DOM

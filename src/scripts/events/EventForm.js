@@ -13,10 +13,15 @@ export const EventForm = () => {
 
     // Create name, location, and date fields, with the date auto-populated with today's date.
     let htmlRep = `<h2>Add An Event</h2>
+    <h6>Date</h6>
     <input type="date" id="createForm__eventDate" value="${year}-${month}-${date}">
+    <h6>Event Name</h6>
     <input type="text" id="createForm__eventName" placeholder="Name">
+    <h6>City</h6>
     <input type="text" id="createForm__eventCity" placeholder="City">
+    <h6>State Code</h6>
     <input type="text" id="createForm__eventState" placeholder="State">
+    <br>
     <button id="createForm__addEventButton">Add Event</button>`;
     contentTarget.innerHTML = htmlRep;
 }

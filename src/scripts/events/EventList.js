@@ -32,7 +32,7 @@ export const EventList = () => {
         }
     })
 
-    let htmlRep = "<h2>Event List</h2>"
+    let htmlRep = "<h2>~ Event Feed ~</h2>"
     htmlRep += evArray.map((ev, i) => {
         if (i === 0)
             return `${EventCardFirst(ev)}${AddDeleteButton(ev)}${AddWeatherButton(ev)}`
@@ -50,7 +50,7 @@ eventHub.addEventListener("eventListStateChanged", e => {
 const AddDeleteButton = ev => {
     // Only add a delete button if the active user created this event.
     if (ev.userId === +sessionStorage.getItem("activeUser"))
-        return `<button id="deleteEvent--${ev.id}">Delete</button>`;
+        return `<button class="deleteEvent" id="deleteEvent--${ev.id}">Delete</button>`;
     else
         return ``;
 }
@@ -60,7 +60,7 @@ const AddWeatherButton = ev => {
     const todayDate = Date.now()
     const difference = (eventDates - todayDate) / (1000 * 60 * 60 * 24)
     if (difference < 7) {
-        return `<button id="eventWeather--${ev.id}">Show Weather</button>`;
+        return `<button class="eventWeather" id="eventWeather--${ev.id}">Show Weather</button>`;
     } else {
         return ""
     }

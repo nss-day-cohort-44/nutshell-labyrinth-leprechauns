@@ -29,7 +29,7 @@ export const TaskList = () => {
 // this is responsible for rendering your tasks. Later on this condtional needs to be changed to reflect the current user
 export const render = (taskArray) => {
     const taskContainer = document.querySelector(".asideLeft__taskList")
-    let taskHTMLRepresentations = "<h2>---Task List---</h2>"
+    let taskHTMLRepresentations = "<h2>~Task List~</h2>"
     const incompleteTasks = taskArray.filter(task =>  {
        return !task.completed && task.userId === +sessionStorage.getItem("activeUser")
     })
