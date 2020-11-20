@@ -91,7 +91,7 @@ eventHub.addEventListener("click", (e) => {
     const [prefix, id] = e.target.id.split("--")
     let [month, date, year] = new Date().toLocaleDateString("en-US").split("/")
     const ev = getEventById(parseInt(id))
-    e.target.parentElement.innerHTML = `<input type="date" id="editEventForm__eventDate--${ev.id}" value="${year}-${month}-${date}">
+    e.target.parentElement.parentElement.innerHTML = `<input type="date" id="editEventForm__eventDate--${ev.id}" value="${year}-${month}-${date}">
     <input type="text" id="editEventForm__eventName--${ev.id}" value="${ev.name}">
     <input type="text" id="editEventForm__eventCity--${ev.id}" value="${ev.eventCity}">
     <input type="text" id="editEventForm__eventState--${ev.id}" value="${ev.eventState}">
