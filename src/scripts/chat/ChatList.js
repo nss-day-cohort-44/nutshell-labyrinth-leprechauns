@@ -140,14 +140,6 @@ eventHub.addEventListener("click", (clickEvent) => {
 eventHub.addEventListener("click", (e) => {
   if (e.target.id.startsWith("addFriendFromMessage")) {
     const [temp, friendId] = e.target.id.split("--")
-    const addFriend = new CustomEvent("addFriendEvent", {
-      detail: {
-        userId: parseInt(sessionStorage.getItem("activeUser")),
-        friendId: parseInt(friendId),
-      },
-    })
-    ChatList()
-    eventHub.dispatchEvent(addFriend)
     if (
       window.confirm(
         `Do you really want to add ${getUserByUserId(parseInt(friendId)).username} to your friends?`
@@ -160,6 +152,7 @@ eventHub.addEventListener("click", (e) => {
         },
       })
       eventHub.dispatchEvent(addFriend)
+      ChatList()
     }
   }
 })
